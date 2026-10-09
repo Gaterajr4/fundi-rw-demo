@@ -1,5 +1,5 @@
-/* Fundi.rw demo service worker: precache everything for offline use. */
-const CACHE = "fundi-demo-v3";
+/* Gura.rw demo service worker: precache everything for offline use. */
+const CACHE = "gura-demo-v4";
 const ASSETS = [
   "./", "./index.html", "./services.html", "./providers.html", "./how.html", "./jobs.html", "./search.html", "./provider.html", "./book.html", "./join.html", "./dashboard.html", "./categories.html", "./category.html", "./ad.html", "./post.html", "./favourites.html", "./seller.html", "./messages.html", "./account.html",
   "./style.css", "./app.js", "./data.js", "./manifest.webmanifest",

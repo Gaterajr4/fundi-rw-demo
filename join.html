@@ -1,5 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Join as a pro · Fundi.rw (demo)</title></head><body>
-<section class="hero" style="padding:28px 0 40px"><div class="wrap" style="max-width:620px"><h1 style="font-size:1.8rem" data-i18n="join_t">Grow your business with Fundi</h1><p data-i18n="join_s"></p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Gura"><meta name="application-name" content="Gura"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Join as a pro · Gura.rw (demo)</title></head><body>
+<section class="hero" style="padding:28px 0 40px"><div class="wrap" style="max-width:620px"><h1 style="font-size:1.8rem" data-i18n="join_t">Grow your business with Gura</h1><p data-i18n="join_s"></p>
 <div class="hero-stats"><div><b>0 RWF</b>to list</div><div><b>3 months</b>free Verified Pro</div><div><b>WhatsApp</b>leads to your phone</div></div></div></section>
 <div class="wrap" style="max-width:620px;margin-top:-24px">
  <form class="card" id="form" onsubmit="submitJoin(event)">
@@ -12,10 +12,10 @@
   <label class="opt"><input type="checkbox" required> I agree to the terms and privacy notice (NCSA-registered in production)</label>
   <button class="btn block" type="submit" data-i18n="submit">Submit application</button>
  </form>
- <div class="card center hidden" id="ok"><div class="check">✓</div><h2>Application received!</h2><p class="muted">Murakoze, <b id="okname"></b>. A Fundi field agent will call you within 48 hours to verify your ID in person and take profile photos. (Demo: nothing was sent.)</p><a class="btn" href="dashboard.html">See your dashboard preview →</a></div>
+ <div class="card center hidden" id="ok"><div class="check">✓</div><h2>Application received!</h2><p class="muted">Murakoze, <b id="okname"></b>. A Gura field agent will call you within 48 hours to verify your ID in person and take profile photos. (Demo: nothing was sent.)</p><a class="btn" href="dashboard.html">See your dashboard preview →</a></div>
 </div>
 <script>
-window.onLang = () => { jtrade.innerHTML = FUNDI.categories.map(c=>`<option>${c.icon} ${c[lang()]}</option>`).join(""); if(!jsec.children.length) jsec.innerHTML = FUNDI.sectors.map(s=>`<label><input type="checkbox"> ${s}</label>`).join(""); };
+window.onLang = () => { jtrade.innerHTML = GURA.categories.map(c=>`<option>${c.icon} ${c[lang()]}</option>`).join(""); if(!jsec.children.length) jsec.innerHTML = GURA.sectors.map(s=>`<label><input type="checkbox"> ${s}</label>`).join(""); };
 function fakeUpload(){ up.classList.add("done"); up.innerHTML = "✅ <b>national_id_front.jpg</b><div class='muted small'>Uploaded (simulated)</div>"; }
 function submitJoin(e){ e.preventDefault(); okname.textContent = jname.value; form.classList.add("hidden"); ok.classList.remove("hidden"); scrollTo(0,0); }
 </script></body></html>

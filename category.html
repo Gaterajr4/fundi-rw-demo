@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Browse ads · Fundi.rw (demo)</title></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Gura"><meta name="application-name" content="Gura"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Browse ads · Gura.rw (demo)</title></head><body>
 <div class="wrap">
   <div class="page-head"><h1 id="h"></h1><p class="muted small" id="crumb"></p></div>
   <form class="msearch" style="margin-top:10px;box-shadow:none;border:1px solid var(--line)" onsubmit="event.preventDefault();render()">
@@ -27,12 +27,12 @@ function setSub(s){ SUB = s; render(); }
 function render(){
   const c = mcat(C);
   h.textContent = c ? c.icon + " " + c[lang()] : (q.value ? `“${q.value}”` : t("all_cats"));
-  document.title = (c ? c.en : "Browse ads") + " · Fundi.rw (demo)";
+  document.title = (c ? c.en : "Browse ads") + " · Gura.rw (demo)";
   crumb.innerHTML = `<a href="index.html">${t("home")}</a> › <a href="categories.html">${t("categories")}</a>${c?` › ${c[lang()]}`:""}${SUB?` › ${subName(C,SUB)}`:""}`;
   subs.innerHTML = c ? [["", "✨ " + t("all")]].concat(c.subs.map(s=>[s[0], lang()==="rw"?s[2]:s[1]])).map(s=> C==="services"&&s[0]==="pros" ? `<a class="chip" href="services.html">🛠️ ${s[1]}</a>` : `<button class="chip ${s[0]===SUB?"on":""}" onclick="setSub('${s[0]}')">${s[1]}</button>`).join("")
-    : FUNDI.mcats.map(m=>`<a class="chip" href="${catHref(m)}">${m.icon} ${m[lang()]}</a>`).join("");
-  extra.innerHTML = C==="services" ? `<a class="banner" href="services.html"><span class="ico">🛠️</span><div><b>${t("book_pro")}</b><span class="muted small">${FUNDI.providers.length} ${t("pros_word")} · ${t("verified")}</span></div><span class="go">›</span></a>`
-    : C==="cvs" ? `<a class="banner" href="jobs.html"><span class="ico">💼</span><div><b>${t("jobs_banner")}</b><span class="muted small">${FUNDI.jobs.length} ${t("jobs_found")}</span></div><span class="go">›</span></a>` : "";
+    : GURA.mcats.map(m=>`<a class="chip" href="${catHref(m)}">${m.icon} ${m[lang()]}</a>`).join("");
+  extra.innerHTML = C==="services" ? `<a class="banner" href="services.html"><span class="ico">🛠️</span><div><b>${t("book_pro")}</b><span class="muted small">${GURA.providers.length} ${t("pros_word")} · ${t("verified")}</span></div><span class="go">›</span></a>`
+    : C==="cvs" ? `<a class="banner" href="jobs.html"><span class="ico">💼</span><div><b>${t("jobs_banner")}</b><span class="muted small">${GURA.jobs.length} ${t("jobs_found")}</span></div><span class="go">›</span></a>` : "";
   const term = q.value.trim().toLowerCase(), mn = +fmin.value||0, mx = +fmax.value||Infinity;
   let L = allAds().filter(a => (!C||a.cat===C) && (!SUB||a.sub===SUB) && locMatch(a, floc.value) && (!fcond.value||a.cond===fcond.value) && a.price>=mn && a.price<=mx && (!fver.checked||(getSeller(a.seller)||{}).verified)
     && (!term || (a.title+" "+(a.titleRw||"")+" "+a.desc+" "+mcatName(a.cat)+" "+a.loc).toLowerCase().includes(term)));

@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Fundi.rw · Buy, sell &amp; hire in Rwanda (demo)</title></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Gura"><meta name="application-name" content="Gura"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Gura.rw · Buy, sell &amp; hire in Rwanda (demo)</title></head><body>
 <section class="m-hero"><div class="wrap">
   <h1 data-i18n="m_hero">Buy, sell &amp; hire anything in Rwanda</h1>
   <p data-i18n="m_hero_s"></p>
@@ -30,18 +30,18 @@
 </div>
 <script>
 let slideIx = 0, slideTimer;
-function goSlide(i){ const n = FUNDI.promos.length; slideIx = (i + n) % n; slides.scrollTo({ left: slides.children[slideIx].offsetLeft - slides.offsetLeft, behavior: "smooth" }); markDots(); }
+function goSlide(i){ const n = GURA.promos.length; slideIx = (i + n) % n; slides.scrollTo({ left: slides.children[slideIx].offsetLeft - slides.offsetLeft, behavior: "smooth" }); markDots(); }
 function markDots(){ [...dots.children].forEach((d,k)=>d.classList.toggle("on", k===slideIx)); }
 function autoplay(){ clearInterval(slideTimer); slideTimer = setInterval(()=>goSlide(slideIx+1), 4500); }
 window.onLang = () => {
   hloc.innerHTML = locOptions(hloc.value || "");
-  cats.innerHTML = FUNDI.mcats.map(c=>`<a class="ci" href="${catHref(c)}"><span class="ic" style="background:${c.bg}">${c.icon}</span>${c[lang()]}<small>${catCount(c.id)}</small></a>`).join("");
-  slides.innerHTML = FUNDI.promos.map(p=>`<a class="slide" href="${p.href}" style="background:${p.bg}"><span class="em">${p.emoji}</span><span class="tg">${L2(p,"tag")}</span><div><h3>${L2(p,"title")}</h3><p>${L2(p,"sub")}</p></div><span class="go">${L2(p,"cta")} →</span></a>`).join("");
-  dots.innerHTML = FUNDI.promos.map((_,k)=>`<button aria-label="Slide ${k+1}" onclick="goSlide(${k});autoplay()"></button>`).join("");
+  cats.innerHTML = GURA.mcats.map(c=>`<a class="ci" href="${catHref(c)}"><span class="ic" style="background:${c.bg}">${c.icon}</span>${c[lang()]}<small>${catCount(c.id)}</small></a>`).join("");
+  slides.innerHTML = GURA.promos.map(p=>`<a class="slide" href="${p.href}" style="background:${p.bg}"><span class="em">${p.emoji}</span><span class="tg">${L2(p,"tag")}</span><div><h3>${L2(p,"title")}</h3><p>${L2(p,"sub")}</p></div><span class="go">${L2(p,"cta")} →</span></a>`).join("");
+  dots.innerHTML = GURA.promos.map((_,k)=>`<button aria-label="Slide ${k+1}" onclick="goSlide(${k});autoplay()"></button>`).join("");
   markDots();
-  trending.innerHTML = FUNDI.ads.filter(a=>a.top).concat(FUNDI.ads.filter(a=>!a.top&&a.mins<200)).slice(0,8).map(a=>adCard(a)).join("");
-  jobs.innerHTML = FUNDI.jobs.slice(0,5).map(jobCard).join("");
-  deals.innerHTML = FUNDI.deals.map(d=>{ const p = getProvider(d.provider); const off = Math.round((1-d.now/d.was)*100);
+  trending.innerHTML = GURA.ads.filter(a=>a.top).concat(GURA.ads.filter(a=>!a.top&&a.mins<200)).slice(0,8).map(a=>adCard(a)).join("");
+  jobs.innerHTML = GURA.jobs.slice(0,5).map(jobCard).join("");
+  deals.innerHTML = GURA.deals.map(d=>{ const p = getProvider(d.provider); const off = Math.round((1-d.now/d.was)*100);
     return `<a class="card deal" href="provider.html?id=${p.id}">${avatar(p)}<div style="min-width:0"><b>${L2(d,"text")}</b><span class="muted small">${p.name}</span><div><span class="price">${rwf(d.now)}</span><span class="was">${rwf(d.was)}</span> <span class="muted small">· ${t("ends")} ${d.ends}</span></div></div><span class="off">-${off}%</span></a>`; }).join("");
   recent.innerHTML = [...allAds()].sort((a,b)=>a.mins-b.mins).slice(0,12).map(a=>adCard(a)).join("");
 };

@@ -1,7 +1,7 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Ad · Fundi.rw (demo)</title></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Gura"><meta name="application-name" content="Gura"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Ad · Gura.rw (demo)</title></head><body>
 <div class="wrap" id="root" style="max-width:760px"></div>
 <script>
-const A = getAd(qs("id")) || FUNDI.ads[0];
+const A = getAd(qs("id")) || GURA.ads[0];
 const SE = getSeller(A.seller) || { id: 0, name: "You (demo)", initials: "ME", color: "#62706a", type: "Individual", verified: false, since: 2026, reply: "—", rating: 0, feedback: 0, phone: (A.phone||"250780000000").replace(/\D/g,""), loc: A.loc };
 const fmtPhone = p => "+" + p.replace(/^(\d{3})(\d{3})(\d{3})(\d{3})$/, "$1 $2 $3 $4");
 function report(){
@@ -13,9 +13,9 @@ function report(){
 }
 function galScroll(el){ const i = Math.round(el.scrollLeft / el.clientWidth); el.parentNode.querySelector(".count").textContent = (i+1) + " / 4"; }
 window.onLang = () => {
-  document.title = A.title + " · Fundi.rw (demo)";
+  document.title = A.title + " · Gura.rw (demo)";
   const c = mcat(A.cat) || {};
-  const wa = `https://wa.me/${SE.phone}?text=${encodeURIComponent("Muraho! I saw your ad '" + A.title + "' on Fundi.rw (demo). Is it still available?")}`;
+  const wa = `https://wa.me/${SE.phone}?text=${encodeURIComponent("Muraho! I saw your ad '" + A.title + "' on Gura.rw (demo). Is it still available?")}`;
   const rows = [[t("p_cat"), (c.icon||"") + " " + mcatName(A.cat)], [t("subcat"), subName(A.cat, A.sub)]].concat(A.cond ? [[t("condition"), t("cond_" + A.cond)]] : []).concat(Object.entries(A.details || {}));
   const sim = allAds().filter(x => x.cat === A.cat && x.id !== A.id).concat(allAds().filter(x => x.cat !== A.cat && x.seller === A.seller)).slice(0, 6);
   root.innerHTML = `

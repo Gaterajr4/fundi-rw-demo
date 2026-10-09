@@ -13,7 +13,7 @@ window.onLang = window.onFav = () => {
     <a href="how.html"><span class="e">❓</span>${t("how_link")}<span class="go">›</span></a>
     <a href="#" onclick="toggleLang();return false"><span class="e">🌐</span>English / Kinyarwanda<span class="go">${lang().toUpperCase()}</span></a>
   </div>
-  <section class="home-sec"><div class="sec-head"><h2>${t("my_ads")} <span class="cnt">(${mine.length})</span></h2>${mine.length?'<a href="#" onclick="if(confirm(\'Remove all your demo ads from this phone?\')){localStorage.removeItem(\'fundi_my_ads\');onLang()}return false">'+t("reset")+'</a>':""}</div>
+  <section class="home-sec"><div class="sec-head"><h2>${t("my_ads")} <span class="cnt">(${mine.length})</span></h2>${mine.length?'<a href="#" onclick="localStorage.removeItem(\'fundi_my_ads\');onLang();return false">'+t("reset")+'</a>':""}</div>
     ${mine.length?`<div class="adgrid">${mine.map(a=>adCard(a)).join("")}</div>`:`<div class="card empty"><p>📣 ${t("post_t")}</p><a class="btn" href="post.html">${t("post_ad")}</a></div>`}</section>`;
 };
 </script></body></html>

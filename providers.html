@@ -1,17 +1,17 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Gura"><meta name="application-name" content="Gura"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Top pros · Gura.rw (demo)</title></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#C2512B"><meta name="description" content="Kuzayo: Come. Trade. Grow. Buy, sell &amp; hire in Rwanda (demo)"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="icons/logo-mark.svg"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Kuzayo"><meta name="application-name" content="Kuzayo"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Top pros · Kuzayo (demo)</title></head><body>
 <div class="wrap">
   <div class="page-head"><h1 data-i18n="pros_t">Top pros</h1><p class="muted small" data-i18n="pros_s"></p></div>
   <div class="sortbar" id="sortbar"></div>
   <div class="grid g2m" id="list"></div>
   <div class="card" style="margin-top:18px;background:linear-gradient(120deg,var(--yl),#fff);display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
-    <div><h3 style="margin:0" data-i18n="join_t">Grow your business with Gura</h3><p class="muted small" data-i18n="join_s" style="margin:0"></p></div><a class="btn sm" href="join.html" data-i18n="nav_join">Join as a pro</a></div>
+    <div><h3 style="margin:0" data-i18n="join_t">Grow your business with Kuzayo</h3><p class="muted small" data-i18n="join_s" style="margin:0"></p></div><a class="btn sm" href="join.html" data-i18n="nav_join">Join as a pro</a></div>
 </div>
 <script>
 let sort = "rating";
 const SORTS = { rating:(a,b)=>b.rating-a.rating||b.reviews-a.reviews, price:(a,b)=>a.from-b.from, reviews:(a,b)=>b.reviews-a.reviews };
 function render(){
   sortbar.innerHTML = Object.keys(SORTS).map(k=>`<button class="chip ${k===sort?"on":""}" onclick="sort='${k}';render()">${t("sort_"+k)}</button>`).join("");
-  list.innerHTML = [...GURA.providers].sort(SORTS[sort]).map(providerCard).join("");
+  list.innerHTML = [...KUZAYO.providers].sort(SORTS[sort]).map(providerCard).join("");
 }
 window.onLang = render;
 </script></body></html>

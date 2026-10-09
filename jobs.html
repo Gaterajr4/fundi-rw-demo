@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Gura"><meta name="application-name" content="Gura"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Jobs & gigs · Gura.rw (demo)</title></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#C2512B"><meta name="description" content="Kuzayo: Come. Trade. Grow. Buy, sell &amp; hire in Rwanda (demo)"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="icons/logo-mark.svg"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Kuzayo"><meta name="application-name" content="Kuzayo"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Jobs & gigs · Kuzayo (demo)</title></head><body>
 <div class="wrap">
   <div class="page-head"><h1 data-i18n="jobs_t">Jobs &amp; gigs</h1><p class="muted small" data-i18n="jobs_s"></p></div>
   <div class="chips" id="chips" style="margin-top:12px"></div>
@@ -13,17 +13,17 @@
 <script>
 let jcat = qs("cat") || "";
 function render(){
-  const cats = [...new Set(GURA.jobs.map(j=>j.cat))];
+  const cats = [...new Set(KUZAYO.jobs.map(j=>j.cat))];
   chips.innerHTML = [""].concat(cats).map(c=>`<button class="chip ${c===jcat?"on":""}" onclick="jcat='${c}';render()">${c?catIcon(c)+" "+catName(c):"✨ "+t("all")}</button>`).join("");
-  const L = GURA.jobs.filter(j=>(!jcat||j.cat===jcat)&&(!jsec.value||j.sector===jsec.value)&&(!jtype.value||j.type===jtype.value));
+  const L = KUZAYO.jobs.filter(j=>(!jcat||j.cat===jcat)&&(!jsec.value||j.sector===jsec.value)&&(!jtype.value||j.type===jtype.value));
   count.textContent = L.length;
   list.innerHTML = L.length ? L.map(jobCard).join("") : '<div class="card empty">😕 No jobs match. Try another filter.</div>';
 }
 window.init = () => { ["jsec","jtype"].forEach(id=>document.getElementById(id).addEventListener("input",render)); };
 window.onLang = () => {
   const sv = jsec.value, tv = jtype.value;
-  jsec.innerHTML = `<option value="">${t("any")}</option>` + [...new Set(GURA.jobs.map(j=>j.sector))].sort().map(s=>`<option>${s}</option>`).join("");
-  jtype.innerHTML = `<option value="">${t("all_types")}</option>` + [...new Set(GURA.jobs.map(j=>j.type))].map(s=>`<option>${s}</option>`).join("");
+  jsec.innerHTML = `<option value="">${t("any")}</option>` + [...new Set(KUZAYO.jobs.map(j=>j.sector))].sort().map(s=>`<option>${s}</option>`).join("");
+  jtype.innerHTML = `<option value="">${t("all_types")}</option>` + [...new Set(KUZAYO.jobs.map(j=>j.type))].map(s=>`<option>${s}</option>`).join("");
   jsec.value = sv; jtype.value = tv; render();
 };
 </script></body></html>

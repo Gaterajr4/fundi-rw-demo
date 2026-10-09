@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Gura"><meta name="application-name" content="Gura"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Post an ad · Gura.rw (demo)</title></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#C2512B"><meta name="description" content="Kuzayo: Come. Trade. Grow. Buy, sell &amp; hire in Rwanda (demo)"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="icons/logo-mark.svg"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Kuzayo"><meta name="application-name" content="Kuzayo"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Post an ad · Kuzayo (demo)</title></head><body>
 <div class="wrap" style="max-width:560px;padding-top:14px">
   <h1 style="font-size:1.45rem;margin:0" data-i18n="post_t">Post a free ad</h1>
   <p class="muted small" style="margin:2px 0 0" id="stepname"></p>
@@ -69,13 +69,13 @@ function renderPhotos(){
 function publish(){
   const a = draft(); a.id = 900000 + (Date.now() % 99999); a.mine = true; a.example = true; a.phone = "250" + pphone.value.replace(/\D/g,"").replace(/^0/,"");
   if (pneg.checked) a.details["Price"] = "Negotiable";
-  const L = myAds(); L.unshift(a); localStorage.setItem("gura_my_ads", JSON.stringify(L.slice(0,20)));
+  const L = myAds(); L.unshift(a); localStorage.setItem("kuzayo_my_ads", JSON.stringify(L.slice(0,20)));
   viewmine.href = "ad.html?id=" + a.id; go(6);
 }
 document.querySelectorAll("#pcond input").forEach(r => r.addEventListener("change", () => document.querySelectorAll("#pcond .opt").forEach(o => o.classList.toggle("on", o.querySelector("input").checked))));
 const photos_el = document.getElementById("photos");
 window.onLang = () => {
-  pick.innerHTML = GURA.mcats.filter(c=>c.id!=="jobs").map(c=>`<button type="button" class="${c.id===PC?"on":""}" onclick="PC='${c.id}';onLang()"><span class="e">${c.icon}</span>${c[lang()]}</button>`).join("");
+  pick.innerHTML = KUZAYO.mcats.filter(c=>c.id!=="jobs").map(c=>`<button type="button" class="${c.id===PC?"on":""}" onclick="PC='${c.id}';onLang()"><span class="e">${c.icon}</span>${c[lang()]}</button>`).join("");
   const c = mcat(PC), sv = psub.value;
   psub.innerHTML = c ? c.subs.map(s=>`<option value="${s[0]}">${lang()==="rw"?s[2]:s[1]}</option>`).join("") : `<option value="">${t("choose")} ${t("p_cat").toLowerCase()} ↑</option>`;
   if (sv && c && c.subs.some(s=>s[0]===sv)) psub.value = sv;

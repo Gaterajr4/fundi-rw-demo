@@ -1,10 +1,10 @@
-/* Gura.rw demo service worker: precache everything for offline use. */
-const CACHE = "gura-demo-v4";
+/* Kuzayo demo service worker: precache everything for offline use. */
+const CACHE = "kuzayo-v5";
 const ASSETS = [
   "./", "./index.html", "./services.html", "./providers.html", "./how.html", "./jobs.html", "./search.html", "./provider.html", "./book.html", "./join.html", "./dashboard.html", "./categories.html", "./category.html", "./ad.html", "./post.html", "./favourites.html", "./seller.html", "./messages.html", "./account.html",
   "./style.css", "./app.js", "./data.js", "./manifest.webmanifest",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/maskable-192.png", "./icons/maskable-512.png",
-  "./icons/apple-touch-icon.png", "./icons/favicon-32.png"
+  "./icons/apple-touch-icon.png", "./icons/favicon-32.png", "./icons/logo-mark.svg"
 ];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));

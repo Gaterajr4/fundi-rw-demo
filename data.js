@@ -1,5 +1,5 @@
-/* Gura.rw DEMO DATA. All names, numbers and reviews are FAKE examples. */
-window.GURA = {
+/* Kuzayo DEMO DATA. All names, numbers and reviews are FAKE examples. */
+window.KUZAYO = {
   categories: [
     { id: "plumber", icon: "🔧", en: "Plumbers", rw: "Abafundi b'amazi" },
     { id: "electrician", icon: "⚡", en: "Electricians", rw: "Abafundi b'amashanyarazi" },
@@ -46,13 +46,13 @@ window.GURA = {
 };
 
 /* v2 landing content. ALL FAKE EXAMPLES for the demo. */
-window.GURA.promos = [
-  { id: "pow", tag: "⭐ Plumber of the week", tagRw: "⭐ Umufundi w'icyumweru", title: "Jean-Claude M. (Example)", titleRw: "Jean-Claude M. (Urugero)", sub: "4.9★ · 112 jobs · replies in ~15 min", subRw: "4.9★ · akazi 112 · asubiza mu min ~15", cta: "View profile", ctaRw: "Reba umwirondoro", href: "provider.html?id=1", bg: "linear-gradient(120deg,#145c36,#2b9a5e)", emoji: "🔧" },
-  { id: "momo10", tag: "📱 MoMo offer (example)", tagRw: "📱 Poromosiyo ya MoMo (urugero)", title: "10% off your first MoMo booking", titleRw: "10% ku itumiza rya mbere na MoMo", sub: "Demo promo · no real discount", subRw: "Igeragezwa · nta gabanuka nyaryo", cta: "Book a pro", ctaRw: "Tumiza", href: "services.html", bg: "linear-gradient(120deg,#c58b00,#f5b800)", emoji: "💸" },
-  { id: "salon", tag: "💇🏾 Salon Sunday", tagRw: "💇🏾 Salon ku cyumweru", title: "Braids & cuts from 3,000 RWF", titleRw: "Gusuka no kogosha guhera 3,000 RWF", sub: "Salon Keza & Urban Fade (examples)", subRw: "Salon Keza na Urban Fade (ingero)", cta: "See salons", ctaRw: "Reba salon", href: "search.html?cat=salon", bg: "linear-gradient(120deg,#8e2d55,#d0688f)", emoji: "✂️" },
-  { id: "jobs", tag: "💼 Now hiring", tagRw: "💼 Barashaka abakozi", title: "New gigs posted in Kigali today", titleRw: "Akazi gashya i Kigali uyu munsi", sub: "Helpers, stylists, cleaners, tutors", subRw: "Abafasha, aba-salon, isuku, abarimu", cta: "Browse jobs", ctaRw: "Reba akazi", href: "jobs.html", bg: "linear-gradient(120deg,#23407a,#3b6fb6)", emoji: "📋" }
+window.KUZAYO.promos = [
+  { id: "pow", tag: "⭐ Plumber of the week", tagRw: "⭐ Umufundi w'icyumweru", title: "Jean-Claude M. (Example)", titleRw: "Jean-Claude M. (Urugero)", sub: "4.9★ · 112 jobs · replies in ~15 min", subRw: "4.9★ · akazi 112 · asubiza mu min ~15", cta: "View profile", ctaRw: "Reba umwirondoro", href: "provider.html?id=1", bg: "linear-gradient(120deg,#1E6B52,#2E8A6A)", emoji: "🔧" },
+  { id: "momo10", tag: "📱 MoMo offer (example)", tagRw: "📱 Poromosiyo ya MoMo (urugero)", title: "10% off your first MoMo booking", titleRw: "10% ku itumiza rya mbere na MoMo", sub: "Demo promo · no real discount", subRw: "Igeragezwa · nta gabanuka nyaryo", cta: "Book a pro", ctaRw: "Tumiza", href: "services.html", bg: "linear-gradient(120deg,#9A3A1A,#C2512B)", emoji: "💸" },
+  { id: "salon", tag: "💇🏾 Salon Sunday", tagRw: "💇🏾 Salon ku cyumweru", title: "Braids & cuts from 3,000 RWF", titleRw: "Gusuka no kogosha guhera 3,000 RWF", sub: "Salon Keza & Urban Fade (examples)", subRw: "Salon Keza na Urban Fade (ingero)", cta: "See salons", ctaRw: "Reba salon", href: "search.html?cat=salon", bg: "linear-gradient(120deg,#1F1A17,#4A3A30)", emoji: "✂️" },
+  { id: "jobs", tag: "💼 Now hiring", tagRw: "💼 Barashaka abakozi", title: "New gigs posted in Kigali today", titleRw: "Akazi gashya i Kigali uyu munsi", sub: "Helpers, stylists, cleaners, tutors", subRw: "Abafasha, aba-salon, isuku, abarimu", cta: "Browse jobs", ctaRw: "Reba akazi", href: "jobs.html", bg: "linear-gradient(120deg,#2D6E8E,#3A86AA)", emoji: "📋" }
 ];
-window.GURA.jobs = [
+window.KUZAYO.jobs = [
   { id: 1, cat: "electrician", title: "Electrician helper wanted", titleRw: "Turashaka umufasha w'amashanyarazi", by: "Volt Pro Rwanda (Example)", sector: "Kicukiro", pay: 8000, per: "day", type: "Daily", posted: "2h", phone: "250780000101" },
   { id: 2, cat: "salon", title: "Salon stylist (braids)", titleRw: "Umusuka imisatsi (salon)", by: "Salon Keza (Example)", sector: "Kimihurura", pay: 120000, per: "month", type: "Full-time", posted: "5h", phone: "250780000102" },
   { id: 3, cat: "cleaner", title: "House cleaner, 3 days/week", titleRw: "Ukora isuku mu rugo, iminsi 3/icyumweru", by: "Private household (Example)", sector: "Nyarutarama", pay: 60000, per: "month", type: "Part-time", posted: "1d", phone: "250780000103" },
@@ -61,13 +61,13 @@ window.GURA.jobs = [
   { id: 6, cat: "salon", title: "Barber, weekends", titleRw: "Umwogoshi, impera z'icyumweru", by: "Urban Fade Barbers (Example)", sector: "Kacyiru", pay: 7000, per: "day", type: "Weekends", posted: "2d", phone: "250780000106" },
   { id: 7, cat: "mover", title: "Moving crew member", titleRw: "Umukozi wo kwimura ibintu", by: "Kigali Movers (Example)", sector: "Gikondo", pay: 6000, per: "day", type: "Daily", posted: "6h", phone: "250780000107" }
 ];
-window.GURA.deals = [
+window.KUZAYO.deals = [
   { provider: 3, text: "Free wash with any braids", textRw: "Koza ku buntu ku musuko wose", was: 6000, now: 4500, ends: "Sun" },
   { provider: 1, text: "Leak check + fix", textRw: "Kugenzura no gusana amazi ava", was: 10000, now: 8000, ends: "Fri" },
   { provider: 2, text: "Socket install x3", textRw: "Gushyiraho priza 3", was: 15000, now: 12000, ends: "Sat" },
   { provider: 6, text: "Cut + beard trim", textRw: "Kogosha + ubwanwa", was: 5000, now: 3500, ends: "Sun" }
 ];
-window.GURA.trending = [
+window.KUZAYO.trending = [
   { icon: "🔥", en: "Geyser repairs", rw: "Gusana geyser", v: "+42%" },
   { icon: "⚡", en: "Cash-power fixes", rw: "Cash-power", v: "+31%" },
   { icon: "💇🏾", en: "Weekend braids", rw: "Gusuka weekend", v: "+27%" },
@@ -75,7 +75,7 @@ window.GURA.trending = [
 ];
 
 /* v3 MARKETPLACE (classifieds). ALL ADS, SELLERS, PHONE NUMBERS AND PRICES ARE FAKE EXAMPLES. */
-window.GURA.mcats = [
+window.KUZAYO.mcats = [
   { id: "vehicles", icon: "🚗", bg: "#e7efff", en: "Vehicles", rw: "Ibinyabiziga", subs: [["cars","Cars","Imodoka"],["motos","Motorbikes","Moto"],["parts","Parts & tyres","Ibyuma n'amapine"],["trucks","Trucks & buses","Amakamyo na bisi"]] },
   { id: "property", icon: "🏠", bg: "#fff1e3", en: "Property", rw: "Imitungo itimukanwa", subs: [["rent","Houses for rent","Inzu zikodeshwa"],["sale","Houses for sale","Inzu zigurishwa"],["land","Land & plots","Ibibanza"],["shops","Shops & offices","Amaduka n'ibiro"],["shortlet","Short stays","Kurara iminsi mike"]] },
   { id: "phones", icon: "📱", bg: "#eaf6ff", en: "Phones & Tablets", rw: "Telefone na Tablet", subs: [["smartphones","Smartphones","Telefone zigezweho"],["tablets","Tablets","Tablet"],["accessories","Accessories","Ibikoresho bya telefone"],["watches","Smart watches","Amasaha agezweho"]] },
@@ -93,11 +93,11 @@ window.GURA.mcats = [
   { id: "cvs", icon: "📄", bg: "#eef0ff", en: "Seeking Work (CVs)", rw: "Abashaka akazi (CV)", subs: [["drivers","Drivers","Abashoferi"],["office","Office & finance","Ibiro n'imari"],["domestic","Domestic & care","Abakozi bo mu rugo"]] },
   { id: "sports", icon: "⚽", bg: "#e6f4ff", en: "Sports & Outdoors", rw: "Imikino n'imyidagaduro", subs: [["bikes","Bicycles","Amagare"],["gear","Sports gear","Ibikoresho by'imikino"]] }
 ];
-window.GURA.locations = {
+window.KUZAYO.locations = {
   kigali: ["Gikondo", "Gisozi", "Kacyiru", "Kagarama", "Kanombe", "Kicukiro", "Kimihurura", "Kimironko", "Kinyinya", "Muhima", "Niboye", "Nyamirambo", "Nyarutarama", "Remera"],
   districts: ["Huye", "Karongi", "Muhanga", "Musanze", "Nyagatare", "Rubavu", "Rusizi", "Rwamagana"]
 };
-window.GURA.sellers = [
+window.KUZAYO.sellers = [
   { id: 1, name: "Kigali Auto Hub (Example)", initials: "KA", color: "#23407a", type: "Business", verified: true, since: 2021, reply: "~1 hr", rating: 4.7, feedback: 41, phone: "250780000201", loc: "Kicukiro" },
   { id: 2, name: "Aline's Phone Corner (Example)", initials: "AP", color: "#b5476b", type: "Business", verified: true, since: 2022, reply: "~10 min", rating: 4.9, feedback: 88, phone: "250780000202", loc: "Muhima" },
   { id: 3, name: "Eric N. (Example)", initials: "EN", color: "#3b6fb6", type: "Individual", verified: false, since: 2025, reply: "~3 hrs", rating: 4.2, feedback: 6, phone: "250780000203", loc: "Remera" },
@@ -161,12 +161,12 @@ window.GURA.sellers = [
     [1501,"sports","bikes","Mountain bike, 21 gears","Igare rya mountain, vitesse 21",180000,"","Rubavu",800,"used",10,"🚲",150,false,{Frame:"Aluminium, M",Gears:"21",Brakes:"Disc"},"Great for Congo Nile Trail rides. Example ad."],
     [1502,"sports","gear","Football boots, sizes 38–44","Inkweto z'umupira, 38–44",30000,"","Nyamirambo",2100,"new",2,"⚽",120,false,{Sizes:"38–44",Studs:"Firm ground"},"Several colours. Example ad."]
   ];
-  window.GURA.ads = R.map(a => ({ id: a[0], cat: a[1], sub: a[2], title: a[3], titleRw: a[4], price: a[5], per: a[6], loc: a[7], mins: a[8], cond: a[9], seller: a[10], emoji: a[11], hue: a[12], top: a[13], details: a[14], desc: a[15], example: true }));
+  window.KUZAYO.ads = R.map(a => ({ id: a[0], cat: a[1], sub: a[2], title: a[3], titleRw: a[4], price: a[5], per: a[6], loc: a[7], mins: a[8], cond: a[9], seller: a[10], emoji: a[11], hue: a[12], top: a[13], details: a[14], desc: a[15], example: true }));
 })();
-window.GURA.promos = [
-  { id: "sell", tag: "📣 Sell faster", tagRw: "📣 Gurisha vuba", title: "Post a free ad in 2 minutes", titleRw: "Tangaza ku buntu mu minota 2", sub: "Phones, cars, houses, furniture, anything", subRw: "Telefone, imodoka, inzu, ibikoresho, byose", cta: "Post ad", ctaRw: "Tangaza", href: "post.html", bg: "linear-gradient(120deg,#145c36,#2b9a5e)", emoji: "📣" },
-  { id: "cars", tag: "🚗 Vehicles week", tagRw: "🚗 Icyumweru cy'imodoka", title: "Verified car dealers in Kigali", titleRw: "Abacuruza imodoka bagenzuwe", sub: "Example dealers · test drive first", subRw: "Ingero · gerageza mbere yo kugura", cta: "See cars", ctaRw: "Reba imodoka", href: "category.html?c=vehicles", bg: "linear-gradient(120deg,#23407a,#3b6fb6)", emoji: "🚙" },
-  { id: "pros", tag: "🛠️ Need a pro?", tagRw: "🛠️ Ukeneye umufundi?", title: "Book a verified pro with MoMo", titleRw: "Tumiza umufundi wagenzuwe na MoMo", sub: "Plumbers, electricians, salons", subRw: "Amazi, amashanyarazi, salon", cta: "Book a pro", ctaRw: "Tumiza", href: "services.html", bg: "linear-gradient(120deg,#c58b00,#f5b800)", emoji: "🔧" },
-  { id: "farm", tag: "🌽 Farm to Kigali", tagRw: "🌽 Kuva mu murima", title: "Fresh produce from Musanze & Muhanga", titleRw: "Imyaka mishya ya Musanze na Muhanga", sub: "Example sellers · delivery Fridays", subRw: "Ingero · bigezwa ku wa Gatanu", cta: "Shop food", ctaRw: "Gura ibiribwa", href: "category.html?c=agri", bg: "linear-gradient(120deg,#5b6b3a,#8aa34a)", emoji: "🥑" },
-  { id: "jobs", tag: "💼 Now hiring", tagRw: "💼 Barashaka abakozi", title: "New jobs & gigs today", titleRw: "Akazi gashya uyu munsi", sub: "Helpers, stylists, cleaners, tutors", subRw: "Abafasha, aba-salon, isuku, abarimu", cta: "Browse jobs", ctaRw: "Reba akazi", href: "jobs.html", bg: "linear-gradient(120deg,#8e2d55,#d0688f)", emoji: "📋" }
+window.KUZAYO.promos = [
+  { id: "sell", tag: "📣 Sell faster", tagRw: "📣 Gurisha vuba", title: "Post a free ad in 2 minutes", titleRw: "Tangaza ku buntu mu minota 2", sub: "Phones, cars, houses, furniture, anything", subRw: "Telefone, imodoka, inzu, ibikoresho, byose", cta: "Post ad", ctaRw: "Tangaza", href: "post.html", bg: "linear-gradient(120deg,#1E6B52,#2E8A6A)", emoji: "📣" },
+  { id: "cars", tag: "🚗 Vehicles week", tagRw: "🚗 Icyumweru cy'imodoka", title: "Verified car dealers in Kigali", titleRw: "Abacuruza imodoka bagenzuwe", sub: "Example dealers · test drive first", subRw: "Ingero · gerageza mbere yo kugura", cta: "See cars", ctaRw: "Reba imodoka", href: "category.html?c=vehicles", bg: "linear-gradient(120deg,#2D6E8E,#3A86AA)", emoji: "🚙" },
+  { id: "pros", tag: "🛠️ Need a pro?", tagRw: "🛠️ Ukeneye umufundi?", title: "Book a verified pro with MoMo", titleRw: "Tumiza umufundi wagenzuwe na MoMo", sub: "Plumbers, electricians, salons", subRw: "Amazi, amashanyarazi, salon", cta: "Book a pro", ctaRw: "Tumiza", href: "services.html", bg: "linear-gradient(120deg,#9A3A1A,#C2512B)", emoji: "🔧" },
+  { id: "farm", tag: "🌽 Farm to Kigali", tagRw: "🌽 Kuva mu murima", title: "Fresh produce from Musanze & Muhanga", titleRw: "Imyaka mishya ya Musanze na Muhanga", sub: "Example sellers · delivery Fridays", subRw: "Ingero · bigezwa ku wa Gatanu", cta: "Shop food", ctaRw: "Gura ibiribwa", href: "category.html?c=agri", bg: "linear-gradient(120deg,#7E5A12,#A8721C)", emoji: "🥑" },
+  { id: "jobs", tag: "💼 Now hiring", tagRw: "💼 Barashaka abakozi", title: "New jobs & gigs today", titleRw: "Akazi gashya uyu munsi", sub: "Helpers, stylists, cleaners, tutors", subRw: "Abafasha, aba-salon, isuku, abarimu", cta: "Browse jobs", ctaRw: "Reba akazi", href: "jobs.html", bg: "linear-gradient(120deg,#1F1A17,#4A3A30)", emoji: "📋" }
 ];

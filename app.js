@@ -66,3 +66,22 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.init) window.init();
   applyLang();
 });
+/* PWA: offline service worker (relative path so it works under /fundi-rw-demo/) */
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(() => {}); });
+}
+/* iPhone install hint: only iOS Safari, not already installed, dismissible */
+function maybeIosHint() {
+  const ua = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram/.test(ua);
+  const standalone = navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
+  if (!isIOS || !isSafari || standalone || localStorage.getItem("fundi_ios_hint") === "x") return;
+  const el = document.createElement("div");
+  el.className = "ios-hint";
+  el.setAttribute("role", "note");
+  el.innerHTML = 'Install on iPhone: tap <b>Share</b> <span aria-hidden="true">⬆️</span> then <b>Add to Home Screen</b>.<button class="x" aria-label="Dismiss">×</button>';
+  el.querySelector(".x").onclick = () => { localStorage.setItem("fundi_ios_hint", "x"); el.remove(); };
+  document.body.appendChild(el);
+}
+document.addEventListener("DOMContentLoaded", maybeIosHint);

@@ -1,7 +1,7 @@
 /* Fundi.rw demo service worker: precache everything for offline use. */
-const CACHE = "fundi-demo-v1";
+const CACHE = "fundi-demo-v2";
 const ASSETS = [
-  "./", "./index.html", "./search.html", "./provider.html", "./book.html", "./join.html", "./dashboard.html",
+  "./", "./index.html", "./services.html", "./providers.html", "./how.html", "./jobs.html", "./search.html", "./provider.html", "./book.html", "./join.html", "./dashboard.html",
   "./style.css", "./app.js", "./data.js", "./manifest.webmanifest",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/maskable-192.png", "./icons/maskable-512.png",
   "./icons/apple-touch-icon.png", "./icons/favicon-32.png"

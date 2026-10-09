@@ -1,7 +1,7 @@
 /* Fundi.rw demo: shared helpers + EN/RW toggle. No real payments or data. */
 const T = {
-  en: { nav_find: "Find a pro", nav_join: "Join as a pro", nav_dash: "Dashboard", hero_title: "Trusted local pros in Kigali", hero_sub: "Plumbers, electricians and salons near you. ID-verified, real reviews, pay a deposit with MoMo.", what: "What do you need?", where: "Which sector?", search: "Search", cats: "Popular services", how: "How it works", h1: "Search", h1d: "Pick a service and your sector.", h2: "Compare", h2d: "See prices, badges and reviews from real jobs.", h3: "Book & pay", h3d: "Chat on WhatsApp or book with a small MoMo deposit.", trust: "Why people trust Fundi", t1: "ID-verified", t1d: "We check every pro's National ID and MoMo name.", t2: "Real reviews", t2d: "Only customers with a booked job can review.", t3: "MoMo built in", t3d: "MTN MoMo & Airtel Money deposits.", featured: "Top rated this week", view: "View profile", book: "Book now", whatsapp: "WhatsApp", from: "From", verified: "Verified", filters: "Filters", all: "All", any: "Any", minrating: "Min rating", maxprice: "Max starting price", results: "pros found", services: "Services & prices", reviews: "Reviews from real jobs", gallery: "Recent work", about: "About", jobs: "jobs", years: "yrs exp.", reply: "Replies", soon: "Soon", demo: "DEMO · fake example data · no real payments", join_t: "Grow your business with Fundi", join_s: "Free listing. Free Verified Pro for 3 months.", submit: "Submit application", pay: "Pay deposit", next: "Continue", back: "Back", home: "Home" },
-  rw: { nav_find: "Shaka umufundi", nav_join: "Iyandikishe", nav_dash: "Imbonerahamwe", hero_title: "Abafundi bizewe i Kigali", hero_sub: "Abafundi b'amazi, b'amashanyarazi na salon hafi yawe. Bagenzuwe, ibitekerezo nyabyo, wishyura ingwate na MoMo.", what: "Ukeneye iki?", where: "Uri mu wuhe murenge?", search: "Shakisha", cats: "Serivisi zikunzwe", how: "Uko bikora", h1: "Shakisha", h1d: "Hitamo serivisi n'umurenge wawe.", h2: "Gereranya", h2d: "Reba ibiciro n'ibitekerezo by'akazi nyako.", h3: "Tumiza wishyure", h3d: "Vugana kuri WhatsApp cyangwa wishyure ingwate na MoMo.", trust: "Impamvu Fundi yizewe", t1: "Indangamuntu yagenzuwe", t1d: "Tugenzura indangamuntu na MoMo bya buri mufundi.", t2: "Ibitekerezo nyabyo", t2d: "Abakiliya bakoresheje gusa ni bo batanga igitekerezo.", t3: "MoMo irimo", t3d: "Ingwate na MTN MoMo cyangwa Airtel Money.", featured: "Abahize abandi iki cyumweru", view: "Reba umwirondoro", book: "Tumiza", whatsapp: "WhatsApp", from: "Guhera", verified: "Yagenzuwe", filters: "Muyunguruzi", all: "Byose", any: "Icyo ari cyo cyose", minrating: "Amanota make", maxprice: "Igiciro kinini", results: "abafundi babonetse", services: "Serivisi n'ibiciro", reviews: "Ibitekerezo by'akazi nyako", gallery: "Akazi ka vuba", about: "Ibyerekeye", jobs: "akazi", years: "imyaka", reply: "Asubiza", soon: "Vuba", demo: "IGERAGEZA · amakuru y'impimbano · nta kwishyura nyako", join_t: "Agura ubucuruzi bwawe na Fundi", join_s: "Kwiyandikisha ni ubuntu. Verified Pro ubuntu amezi 3.", submit: "Ohereza", pay: "Ishyura ingwate", next: "Komeza", back: "Subira inyuma", home: "Ahabanza" }
+  en: { nav_find: "Find a pro", nav_join: "Join as a pro", nav_dash: "Dashboard", hero_title: "Trusted local pros in Kigali", hero_sub: "Plumbers, electricians and salons near you. ID-verified, real reviews, pay a deposit with MoMo.", what: "What do you need?", where: "Which sector?", search: "Search", cats: "Popular services", how: "How it works", h1: "Search", h1d: "Pick a service and your sector.", h2: "Compare", h2d: "See prices, badges and reviews from real jobs.", h3: "Book & pay", h3d: "Chat on WhatsApp or book with a small MoMo deposit.", trust: "Why people trust Fundi", t1: "ID-verified", t1d: "We check every pro's National ID and MoMo name.", t2: "Real reviews", t2d: "Only customers with a booked job can review.", t3: "MoMo built in", t3d: "MTN MoMo & Airtel Money deposits.", featured: "Top rated this week", view: "View profile", book: "Book now", whatsapp: "WhatsApp", from: "From", verified: "Verified", filters: "Filters", all: "All", any: "Any", minrating: "Min rating", maxprice: "Max starting price", results: "pros found", services: "Services & prices", reviews: "Reviews from real jobs", gallery: "Recent work", about: "About", jobs: "jobs", years: "yrs exp.", reply: "Replies", soon: "Soon", demo: "DEMO · fake example data · no real payments", join_t: "Grow your business with Fundi", join_s: "Free listing. Free Verified Pro for 3 months.", submit: "Submit application", pay: "Pay deposit", next: "Continue", back: "Back", home: "Home", tab_home: "Home", tab_services: "Services", tab_pros: "Pros", tab_how: "How", tab_join: "Join", all_services: "All services", all_services_s: "Pick a service to see verified pros near you.", pros_t: "Top pros", pros_s: "Highest-rated pros in Kigali this week.", how_s: "Find, compare and book a trusted pro in 3 steps.", quick: "Popular now", see_all: "See all", pros_word: "pros", cta_find: "Find a pro now", sort_rating: "Top rated", sort_price: "Lowest price", sort_reviews: "Most reviews", tab_jobs: "Jobs", jobs_t: "Jobs & gigs", jobs_s: "Example job ads from pros and households in Kigali.", apply_wa: "Apply via WhatsApp", ago: "ago", per_day: "/day", per_month: "/month", per_hour: "/hour", deals_t: "Deals near you", ends: "Ends", trending_t: "Trending this week", how_link: "How Fundi works", all_types: "All types", stats_pros: "verified pros", stats_rating: "avg rating", stats_reply: "reply time", stats_jobs: "open jobs", example: "Example", jobs_found: "jobs", job_type: "Type" },
+  rw: { nav_find: "Shaka umufundi", nav_join: "Iyandikishe", nav_dash: "Imbonerahamwe", hero_title: "Abafundi bizewe i Kigali", hero_sub: "Abafundi b'amazi, b'amashanyarazi na salon hafi yawe. Bagenzuwe, ibitekerezo nyabyo, wishyura ingwate na MoMo.", what: "Ukeneye iki?", where: "Uri mu wuhe murenge?", search: "Shakisha", cats: "Serivisi zikunzwe", how: "Uko bikora", h1: "Shakisha", h1d: "Hitamo serivisi n'umurenge wawe.", h2: "Gereranya", h2d: "Reba ibiciro n'ibitekerezo by'akazi nyako.", h3: "Tumiza wishyure", h3d: "Vugana kuri WhatsApp cyangwa wishyure ingwate na MoMo.", trust: "Impamvu Fundi yizewe", t1: "Indangamuntu yagenzuwe", t1d: "Tugenzura indangamuntu na MoMo bya buri mufundi.", t2: "Ibitekerezo nyabyo", t2d: "Abakiliya bakoresheje gusa ni bo batanga igitekerezo.", t3: "MoMo irimo", t3d: "Ingwate na MTN MoMo cyangwa Airtel Money.", featured: "Abahize abandi iki cyumweru", view: "Reba umwirondoro", book: "Tumiza", whatsapp: "WhatsApp", from: "Guhera", verified: "Yagenzuwe", filters: "Muyunguruzi", all: "Byose", any: "Icyo ari cyo cyose", minrating: "Amanota make", maxprice: "Igiciro kinini", results: "abafundi babonetse", services: "Serivisi n'ibiciro", reviews: "Ibitekerezo by'akazi nyako", gallery: "Akazi ka vuba", about: "Ibyerekeye", jobs: "akazi", years: "imyaka", reply: "Asubiza", soon: "Vuba", demo: "IGERAGEZA · amakuru y'impimbano · nta kwishyura nyako", join_t: "Agura ubucuruzi bwawe na Fundi", join_s: "Kwiyandikisha ni ubuntu. Verified Pro ubuntu amezi 3.", submit: "Ohereza", pay: "Ishyura ingwate", next: "Komeza", back: "Subira inyuma", home: "Ahabanza", tab_home: "Ahabanza", tab_services: "Serivisi", tab_pros: "Abafundi", tab_how: "Uko bikora", tab_join: "Iyandikishe", all_services: "Serivisi zose", all_services_s: "Hitamo serivisi urebe abafundi bagenzuwe hafi yawe.", pros_t: "Abafundi b'indashyikirwa", pros_s: "Abafundi bafite amanota menshi i Kigali iki cyumweru.", how_s: "Shaka, gereranya kandi utumize umufundi wizewe mu ntambwe 3.", quick: "Bikunzwe ubu", see_all: "Reba byose", pros_word: "abafundi", cta_find: "Shaka umufundi ubu", sort_rating: "Amanota menshi", sort_price: "Igiciro gito", sort_reviews: "Ibitekerezo byinshi", tab_jobs: "Akazi", jobs_t: "Akazi n'ibiraka", jobs_s: "Ingero z'amatangazo y'akazi i Kigali.", apply_wa: "Saba kuri WhatsApp", ago: "ishize", per_day: "/umunsi", per_month: "/ukwezi", per_hour: "/isaha", deals_t: "Poromosiyo hafi yawe", ends: "Birangira", trending_t: "Bigezweho iki cyumweru", how_link: "Uko Fundi ikora", all_types: "Ubwoko bwose", stats_pros: "abafundi bagenzuwe", stats_rating: "amanota", stats_reply: "igihe cyo gusubiza", stats_jobs: "akazi gahari", example: "Urugero", jobs_found: "akazi", job_type: "Ubwoko" }
 };
 const lang = () => localStorage.getItem("fundi_lang") || "en";
 const t = k => (T[lang()] && T[lang()][k]) || T.en[k] || k;
@@ -43,26 +43,56 @@ function providerCard(p) {
     </div>
   </article>`;
 }
+const TAB_ICON = {
+  home: '<svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
+  services: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>',
+  pros: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>',
+  how: '<svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  jobs: '<svg viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm3 4v2h10V8zm0 4v2h10v-2zm0 4v2h6v-2z"/></svg>',
+  join: '<svg viewBox="0 0 24 24"><path d="M10 3h4a2 2 0 0 1 2 2v2h4a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1h4V5a2 2 0 0 1 2-2zm0 2v2h4V5z"/></svg>'
+};
+const TABS = [
+  { k: "home", href: "index.html", label: "tab_home", match: ["index.html", ""] },
+  { k: "services", href: "services.html", label: "tab_services", match: ["services.html", "search.html"] },
+  { k: "pros", href: "providers.html", label: "tab_pros", match: ["providers.html", "provider.html", "book.html"] },
+  { k: "jobs", href: "jobs.html", label: "tab_jobs", match: ["jobs.html"] },
+  { k: "join", href: "join.html", label: "tab_join", match: ["join.html", "dashboard.html"] }
+];
+const herePage = () => location.pathname.split("/").pop() || "index.html";
+const isTabRoot = () => ["index.html", "", "services.html", "providers.html", "jobs.html", "how.html", "join.html"].includes(herePage());
 function header() {
-  const here = location.pathname.split("/").pop() || "index.html";
-  const a = (h, k) => `<a href="${h}" class="${here === h ? "active" : ""}" data-i18n="${k}">${t(k)}</a>`;
+  const back = isTabRoot() ? "" : `<button class="back-btn" onclick="history.length>1?history.back():location.href='index.html'" aria-label="Back">‹</button>`;
   return `<div class="demo-bar" data-i18n="demo">${t("demo")}</div>
-  <header class="topbar"><div class="wrap topbar-in">
+  <header class="topbar"><div class="wrap topbar-in">${back}
     <a href="index.html" class="logo"><span class="logo-mark">F</span><span>Fundi<span class="dot">.rw</span></span></a>
-    <nav class="nav">${a("search.html", "nav_find")}${a("join.html", "nav_join")}${a("dashboard.html", "nav_dash")}</nav>
+    <a href="how.html" class="how-btn${herePage() === "how.html" ? " active" : ""}" aria-label="How it works" title="How it works">?</a>
     <button class="lang-btn" onclick="toggleLang()" aria-label="Language">🇷🇼 RW</button>
   </div></header>`;
 }
+const L2 = (o, k) => (lang() === "rw" && o[k + "Rw"]) || o[k];
+function jobCard(j) {
+  const wa = `https://wa.me/${j.phone}?text=${encodeURIComponent("Muraho! I saw your job ad '" + j.title + "' on Fundi.rw (demo). Is it still open?")}`;
+  return `<article class="card job">
+    <div class="job-top"><div class="job-ico">${catIcon(j.cat) || "💼"}</div><div style="min-width:0"><h3>${L2(j, "title")}</h3><div class="muted small">${j.by}</div></div></div>
+    <div class="tags"><span class="badge plain">${ICON.pin} ${j.sector}</span><span class="badge">${j.type}</span><span class="badge plain">🕒 ${j.posted} ${t("ago")}</span></div>
+    <div class="job-foot"><div class="price">${rwf(j.pay)}<span class="muted small" style="font-weight:600">${t("per_" + j.per)}</span></div><a class="btn wa sm" target="_blank" rel="noopener" href="${wa}">${ICON.wa}<span>${t("apply_wa")}</span></a></div>
+  </article>`;
+}
+function tabbar() {
+  const h = herePage();
+  return `<nav class="tabbar" aria-label="Main">${TABS.map(x => {
+    const on = x.match.includes(h);
+    return `<a href="${x.href}" class="tab${on ? " active" : ""}"${on ? ' aria-current="page"' : ""}>${TAB_ICON[x.k]}<span data-i18n="${x.label}">${t(x.label)}</span></a>`;
+  }).join("")}</nav>`;
+}
 function footer() {
-  return `<footer class="footer"><div class="wrap">
-    <div class="logo"><span class="logo-mark">F</span><span>Fundi<span class="dot">.rw</span></span></div>
-    <p class="muted small">Trusted local pros in Kigali. Clickable demo only: all providers, reviews and phone numbers are fake examples. No payments are processed.</p>
-    <p class="small"><a href="index.html" data-i18n="home">Home</a> · <a href="search.html" data-i18n="nav_find">Find a pro</a> · <a href="join.html" data-i18n="nav_join">Join</a> · <a href="dashboard.html" data-i18n="nav_dash">Dashboard</a></p>
-  </div></footer>`;
+  return `<footer class="footer mini"><div class="wrap"><p class="small muted">Fundi.rw · clickable demo. All providers, reviews and phone numbers are fake examples. No payments are processed.</p></div></footer>`;
 }
 document.addEventListener("DOMContentLoaded", () => {
   document.body.insertAdjacentHTML("afterbegin", header());
-  document.body.insertAdjacentHTML("beforeend", footer());
+  if (!document.body.classList.contains("no-footer")) document.body.insertAdjacentHTML("beforeend", footer());
+  document.body.insertAdjacentHTML("beforeend", tabbar());
+  document.body.classList.add("has-tabs");
   if (window.init) window.init();
   applyLang();
 });

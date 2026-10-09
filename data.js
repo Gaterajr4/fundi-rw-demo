@@ -44,3 +44,32 @@ window.FUNDI = {
       reviewList: [{ who: "Benjamin S.", job: "Fault finding", date: "3 Oct 2026", stars: 5, text: "Very fast, fair price, gave a receipt." }] }
   ]
 };
+
+/* v2 landing content. ALL FAKE EXAMPLES for the demo. */
+window.FUNDI.promos = [
+  { id: "pow", tag: "⭐ Plumber of the week", tagRw: "⭐ Umufundi w'icyumweru", title: "Jean-Claude M. (Example)", titleRw: "Jean-Claude M. (Urugero)", sub: "4.9★ · 112 jobs · replies in ~15 min", subRw: "4.9★ · akazi 112 · asubiza mu min ~15", cta: "View profile", ctaRw: "Reba umwirondoro", href: "provider.html?id=1", bg: "linear-gradient(120deg,#145c36,#2b9a5e)", emoji: "🔧" },
+  { id: "momo10", tag: "📱 MoMo offer (example)", tagRw: "📱 Poromosiyo ya MoMo (urugero)", title: "10% off your first MoMo booking", titleRw: "10% ku itumiza rya mbere na MoMo", sub: "Demo promo · no real discount", subRw: "Igeragezwa · nta gabanuka nyaryo", cta: "Book a pro", ctaRw: "Tumiza", href: "services.html", bg: "linear-gradient(120deg,#c58b00,#f5b800)", emoji: "💸" },
+  { id: "salon", tag: "💇🏾 Salon Sunday", tagRw: "💇🏾 Salon ku cyumweru", title: "Braids & cuts from 3,000 RWF", titleRw: "Gusuka no kogosha guhera 3,000 RWF", sub: "Salon Keza & Urban Fade (examples)", subRw: "Salon Keza na Urban Fade (ingero)", cta: "See salons", ctaRw: "Reba salon", href: "search.html?cat=salon", bg: "linear-gradient(120deg,#8e2d55,#d0688f)", emoji: "✂️" },
+  { id: "jobs", tag: "💼 Now hiring", tagRw: "💼 Barashaka abakozi", title: "New gigs posted in Kigali today", titleRw: "Akazi gashya i Kigali uyu munsi", sub: "Helpers, stylists, cleaners, tutors", subRw: "Abafasha, aba-salon, isuku, abarimu", cta: "Browse jobs", ctaRw: "Reba akazi", href: "jobs.html", bg: "linear-gradient(120deg,#23407a,#3b6fb6)", emoji: "📋" }
+];
+window.FUNDI.jobs = [
+  { id: 1, cat: "electrician", title: "Electrician helper wanted", titleRw: "Turashaka umufasha w'amashanyarazi", by: "Volt Pro Rwanda (Example)", sector: "Kicukiro", pay: 8000, per: "day", type: "Daily", posted: "2h", phone: "250780000101" },
+  { id: 2, cat: "salon", title: "Salon stylist (braids)", titleRw: "Umusuka imisatsi (salon)", by: "Salon Keza (Example)", sector: "Kimihurura", pay: 120000, per: "month", type: "Full-time", posted: "5h", phone: "250780000102" },
+  { id: 3, cat: "cleaner", title: "House cleaner, 3 days/week", titleRw: "Ukora isuku mu rugo, iminsi 3/icyumweru", by: "Private household (Example)", sector: "Nyarutarama", pay: 60000, per: "month", type: "Part-time", posted: "1d", phone: "250780000103" },
+  { id: 4, cat: "tutor", title: "Math tutor, P6 & S3", titleRw: "Umwarimu w'imibare, P6 na S3", by: "Parent in Kimironko (Example)", sector: "Kimironko", pay: 5000, per: "hour", type: "Evenings", posted: "1d", phone: "250780000104" },
+  { id: 5, cat: "plumber", title: "Plumber for 2-week site job", titleRw: "Umufundi w'amazi ibyumweru 2", by: "Remera build site (Example)", sector: "Remera", pay: 12000, per: "day", type: "Contract", posted: "3h", phone: "250780000105" },
+  { id: 6, cat: "salon", title: "Barber, weekends", titleRw: "Umwogoshi, impera z'icyumweru", by: "Urban Fade Barbers (Example)", sector: "Kacyiru", pay: 7000, per: "day", type: "Weekends", posted: "2d", phone: "250780000106" },
+  { id: 7, cat: "mover", title: "Moving crew member", titleRw: "Umukozi wo kwimura ibintu", by: "Kigali Movers (Example)", sector: "Gikondo", pay: 6000, per: "day", type: "Daily", posted: "6h", phone: "250780000107" }
+];
+window.FUNDI.deals = [
+  { provider: 3, text: "Free wash with any braids", textRw: "Koza ku buntu ku musuko wose", was: 6000, now: 4500, ends: "Sun" },
+  { provider: 1, text: "Leak check + fix", textRw: "Kugenzura no gusana amazi ava", was: 10000, now: 8000, ends: "Fri" },
+  { provider: 2, text: "Socket install x3", textRw: "Gushyiraho priza 3", was: 15000, now: 12000, ends: "Sat" },
+  { provider: 6, text: "Cut + beard trim", textRw: "Kogosha + ubwanwa", was: 5000, now: 3500, ends: "Sun" }
+];
+window.FUNDI.trending = [
+  { icon: "🔥", en: "Geyser repairs", rw: "Gusana geyser", v: "+42%" },
+  { icon: "⚡", en: "Cash-power fixes", rw: "Cash-power", v: "+31%" },
+  { icon: "💇🏾", en: "Weekend braids", rw: "Gusuka weekend", v: "+27%" },
+  { icon: "📚", en: "Exam tutors", rw: "Abarimu b'ibizamini", v: "+19%" }
+];

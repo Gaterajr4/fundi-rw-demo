@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Ad · Fundi.rw (demo)</title></head><body>
+<div class="wrap" id="root" style="max-width:760px"></div>
+<script>
+const A = getAd(qs("id")) || FUNDI.ads[0];
+const SE = getSeller(A.seller) || { id: 0, name: "You (demo)", initials: "ME", color: "#62706a", type: "Individual", verified: false, since: 2026, reply: "—", rating: 0, feedback: 0, phone: (A.phone||"250780000000").replace(/\D/g,""), loc: A.loc };
+const fmtPhone = p => "+" + p.replace(/^(\d{3})(\d{3})(\d{3})(\d{3})$/, "$1 $2 $3 $4");
+function report(){
+  const m = document.createElement("div"); m.className = "modal";
+  m.innerHTML = `<div class="sheet"><h3>${t("report_q")}</h3>${["Scam or fraud","Item already sold","Wrong price or category","Offensive content"].map((r,i)=>`<label class="opt${i?"":" on"}"><input type="radio" name="r" ${i?"":"checked"} onchange="this.closest('.sheet').querySelectorAll('.opt').forEach(o=>o.classList.toggle('on',o.contains(this)))"> ${r}</label>`).join("")}
+    <div class="btn-row" style="margin-top:6px"><button class="btn ghost" style="flex:1" onclick="this.closest('.modal').remove()">${t("cancel")}</button><button class="btn" style="flex:1;background:#b42318" onclick="this.closest('.modal').remove();toast(t('reported'))">${t("report")}</button></div></div>`;
+  m.addEventListener("click", e => { if (e.target === m) m.remove(); });
+  document.body.appendChild(m);
+}
+function galScroll(el){ const i = Math.round(el.scrollLeft / el.clientWidth); el.parentNode.querySelector(".count").textContent = (i+1) + " / 4"; }
+window.onLang = () => {
+  document.title = A.title + " · Fundi.rw (demo)";
+  const c = mcat(A.cat) || {};
+  const wa = `https://wa.me/${SE.phone}?text=${encodeURIComponent("Muraho! I saw your ad '" + A.title + "' on Fundi.rw (demo). Is it still available?")}`;
+  const rows = [[t("p_cat"), (c.icon||"") + " " + mcatName(A.cat)], [t("subcat"), subName(A.cat, A.sub)]].concat(A.cond ? [[t("condition"), t("cond_" + A.cond)]] : []).concat(Object.entries(A.details || {}));
+  const sim = allAds().filter(x => x.cat === A.cat && x.id !== A.id).concat(allAds().filter(x => x.cat !== A.cat && x.seller === A.seller)).slice(0, 6);
+  root.innerHTML = `
+  <div class="gal"><div class="track" onscroll="galScroll(this)">${[0,1,2,3].map(i=>`<div class="frame">${adArt(A, i, "big")}</div>`).join("")}</div>
+    <span class="exl">${t("example")} · illustration</span><span class="count">1 / 4</span>
+    <button class="fav${isFav(A.id)?" on":""}" data-fav="${A.id}" aria-label="Save" onclick="toggleFav(${A.id},event)">${isFav(A.id)?"♥":"♡"}</button></div>
+  <div class="ad-head">
+    <div class="price">${priceTxt(A)}</div>
+    <h1>${adTitle(A)}</h1>
+    <div class="tags">${A.top?`<span class="badge">⭐ ${t("top")}</span>`:""}${A.cond?`<span class="badge plain">${t("cond_"+A.cond)}</span>`:""}<span class="badge plain">${ICON.pin} ${locArea(A.loc)}</span><span class="badge plain">🕒 ${ago(A.mins)}</span><span class="badge ok">${t("negotiable")}</span></div>
+  </div>
+  <div class="grid g2m" style="margin-top:12px">
+    <div class="grid" style="align-content:start">
+      <div class="card"><h2>${t("details")}</h2><div class="kv">${rows.map(r=>`<div>${r[0]}</div><div><b>${r[1]}</b></div>`).join("")}</div></div>
+      <div class="card"><h2>${t("description")}</h2><p style="margin:0">${A.desc}</p><p class="muted small" style="margin:8px 0 0">Ad ID: FR-${A.id} · ${t("example")}</p></div>
+    </div>
+    <div class="grid" style="align-content:start">
+      <div class="card"><h2>${t("seller")}</h2>
+        <a class="sellercard" href="${SE.id?`seller.html?id=${SE.id}`:"account.html"}">${avatar(SE)}<div style="min-width:0"><b>${SE.name}</b>
+          <div class="muted small">${SE.type} · ${t("member_since")} ${SE.since}</div>
+          <div class="small">${SE.rating?`<span class="stars">★</span> <b>${SE.rating}</b> <span class="muted">(${SE.feedback} ${t("feedback")})</span>`:""}</div></div><span style="margin-left:auto;color:var(--mut);font-size:1.4rem">›</span></a>
+        <div class="tags" style="margin-top:10px">${SE.verified?`<span class="badge ok">${ICON.shield} ${t("verified")} ID</span>`:'<span class="badge plain">ID not verified</span>'}<span class="badge plain">⏱ ${t("reply_time")} ${SE.reply}</span></div>
+        <a class="btn ghost block sm" style="margin-top:12px" href="tel:+${SE.phone}">📞 ${fmtPhone(SE.phone)}</a>
+      </div>
+      <div class="card safety"><h2>🛡️ ${t("safety")}</h2><ul style="margin:0;padding-left:18px">${["s1","s2","s3","s4"].map(k=>`<li>${t(k)}</li>`).join("")}</ul></div>
+      <button class="btn danger-ghost block sm" onclick="report()">🚩 ${t("report")}</button>
+    </div>
+  </div>
+  ${sim.length?`<section class="home-sec"><div class="sec-head"><h2>${t("similar")}</h2><a href="category.html?c=${A.cat}">${t("see_all")} →</a></div><div class="adgrid">${sim.map(x=>adCard(x)).join("")}</div></section>`:""}
+  <div style="height:16px"></div>
+  <div class="contact-bar">
+    <a class="btn dark" href="tel:+${SE.phone}">📞 ${t("call")}</a>
+    <a class="btn wa" target="_blank" rel="noopener" href="${wa}">${ICON.wa} ${t("whatsapp")}</a>
+    <a class="btn" href="messages.html?ad=${A.id}">💬 ${t("chat")}</a>
+  </div>`;
+};
+</script></body></html>

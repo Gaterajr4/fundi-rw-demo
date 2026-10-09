@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Account · Fundi.rw (demo)</title></head><body>
+<div class="wrap" style="max-width:640px" id="root"></div>
+<script>
+window.onLang = window.onFav = () => {
+  const mine = myAds(), u = unread();
+  root.innerHTML = `<div class="card" style="margin-top:16px;display:flex;gap:12px;align-items:center">${avatar({color:"#1f7a4a",initials:"GC"})}<div><b>Demo user</b><div class="muted small">${t("account_s")}</div></div></div>
+  <div class="card menu" style="margin-top:12px;padding:4px 14px">
+    <a href="messages.html"><span class="e">💬</span>${t("messages")}${u?`<span class="pill">${u} ${t("unread_w")}</span>`:'<span class="go">›</span>'}</a>
+    <a href="favourites.html"><span class="e">♥</span>${t("saved_t")}<span class="go">${favs().length} ›</span></a>
+    <a href="post.html"><span class="e">📣</span>${t("post_ad")}<span class="go">›</span></a>
+    <a href="join.html"><span class="e">🛠️</span>${t("nav_join")}<span class="go">›</span></a>
+    <a href="dashboard.html"><span class="e">📊</span>${t("nav_dash")}<span class="go">›</span></a>
+    <a href="how.html"><span class="e">❓</span>${t("how_link")}<span class="go">›</span></a>
+    <a href="#" onclick="toggleLang();return false"><span class="e">🌐</span>English / Kinyarwanda<span class="go">${lang().toUpperCase()}</span></a>
+  </div>
+  <section class="home-sec"><div class="sec-head"><h2>${t("my_ads")} <span class="cnt">(${mine.length})</span></h2>${mine.length?'<a href="#" onclick="if(confirm(\'Remove all your demo ads from this phone?\')){localStorage.removeItem(\'fundi_my_ads\');onLang()}return false">'+t("reset")+'</a>':""}</div>
+    ${mine.length?`<div class="adgrid">${mine.map(a=>adCard(a)).join("")}</div>`:`<div class="card empty"><p>📣 ${t("post_t")}</p><a class="btn" href="post.html">${t("post_ad")}</a></div>`}</section>`;
+};
+</script></body></html>

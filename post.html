@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Post an ad · Fundi.rw (demo)</title></head><body>
+<div class="wrap" style="max-width:560px;padding-top:14px">
+  <h1 style="font-size:1.45rem;margin:0" data-i18n="post_t">Post a free ad</h1>
+  <p class="muted small" style="margin:2px 0 0" id="stepname"></p>
+  <div class="steps-bar" id="bar"><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="pane" data-step="1">
+    <div class="pickcats" id="pick"></div>
+    <div class="field" style="margin-top:12px"><label data-i18n="subcat">Subcategory</label><select id="psub"></select></div>
+    <button class="btn block" onclick="go(2)" data-i18n="next">Continue</button></div>
+
+  <div class="pane hidden" data-step="2">
+    <div class="field"><label data-i18n="ad_title">Title</label><input id="ptitle" maxlength="70" placeholder="e.g. Samsung Galaxy A15, 128GB, like new"></div>
+    <label data-i18n="condition">Condition</label>
+    <div class="momo" id="pcond" style="margin-bottom:14px">
+      <label class="opt"><input type="radio" name="cond" value="new"> <span data-i18n="cond_new">Brand new</span></label>
+      <label class="opt on"><input type="radio" name="cond" value="used" checked> <span data-i18n="cond_used">Used</span></label>
+    </div>
+    <div class="field"><label data-i18n="description">Description</label><textarea id="pdesc" rows="4" placeholder="What is it, what condition, what's included, delivery?"></textarea></div>
+    <button class="btn block" onclick="go(3)" data-i18n="next">Continue</button></div>
+
+  <div class="pane hidden" data-step="3">
+    <p class="muted small" style="margin-top:0">Add up to 6 photos. Demo: tapping a box adds an illustration, no real upload happens.</p>
+    <div class="photos" id="photos"></div>
+    <div style="height:14px"></div><button class="btn block" onclick="go(4)" data-i18n="next">Continue</button></div>
+
+  <div class="pane hidden" data-step="4">
+    <div class="field"><label><span data-i18n="p_price">Price</span> (RWF)</label><input id="pprice" type="number" inputmode="numeric" min="0" step="500" placeholder="e.g. 185000"></div>
+    <div class="field"><label>Per</label><select id="pper"><option value="">One-off price</option><option value="month">per month</option><option value="day">per day</option><option value="night">per night</option><option value="hour">per hour</option></select></div>
+    <label class="opt"><input type="checkbox" id="pneg" checked> <span data-i18n="negotiable">Negotiable</span></label>
+    <div style="height:8px"></div><button class="btn block" onclick="go(5)" data-i18n="next">Continue</button></div>
+
+  <div class="pane hidden" data-step="5">
+    <div class="field"><label data-i18n="location">Location</label><select id="ploc"></select></div>
+    <div class="field"><label data-i18n="phone">Phone</label><input id="pphone" inputmode="tel" value="078 000 0000"></div>
+    <div class="notice">🧪 Demo: your ad is saved on this phone only. Nothing is sent anywhere.</div>
+    <div class="preview" id="preview"></div>
+    <div style="height:14px"></div><button class="btn block yellow" onclick="publish()">📣 <span data-i18n="publish">Publish ad</span></button></div>
+
+  <div class="pane hidden center" data-step="6">
+    <div class="check">✓</div><h2 data-i18n="posted_ok">Your ad is live (demo)</h2><p class="muted" data-i18n="posted_s"></p>
+    <div class="btn-row" style="justify-content:center"><a class="btn" id="viewmine" href="#" data-i18n="view_ad">View my ad</a><a class="btn ghost" href="post.html" data-i18n="post_another">Post another</a></div></div>
+</div>
+<script>
+let step = 1, PC = "", photos = [];
+const NAMES = ["p_cat","p_det","p_photos","p_price","p_contact"];
+const draft = () => ({ id: 0, cat: PC, sub: psub.value, title: ptitle.value.trim() || "Untitled", price: +pprice.value || 0, per: pper.value, loc: ploc.value || "Kigali", mins: 1, cond: (document.querySelector('[name=cond]:checked')||{}).value || "", seller: 0, emoji: (mcat(PC)||{}).icon, hue: photos[0] || 140, top: false, details: {}, desc: pdesc.value.trim() || "—" });
+function go(n){
+  if (n > step) {
+    if (step===1 && !PC) return toast("Choose a category");
+    if (step===2 && ptitle.value.trim().length < 5) return toast("Add a title (5+ characters)");
+    if (step===3 && !photos.length) return toast("Add at least 1 photo");
+    if (step===4 && !(+pprice.value > 0)) return toast("Add a price");
+  }
+  const changed = n !== step; step = n;
+  document.querySelectorAll(".pane").forEach(p => p.classList.toggle("hidden", +p.dataset.step !== n));
+  [...bar.children].forEach((s,i)=>s.classList.toggle("on", i < n));
+  stepname.textContent = n <= 5 ? `${n}/5 · ${t(NAMES[n-1])}` : "";
+  if (n === 5) preview.innerHTML = adCard(draft()).replace(/href="ad\.html\?id=0"/, 'href="#" onclick="return false"');
+  if (changed) scrollTo(0,0);
+}
+function renderPhotos(){
+  photos = photos.slice(0,6);
+  const d = draft();
+  photos_el.innerHTML = [0,1,2,3,4,5].map(i => photos[i]!=null
+    ? `<div class="ph filled">${adArt({...d, hue: photos[i]}, 0)}<button class="x" onclick="photos.splice(${i},1);renderPhotos()" aria-label="Remove">×</button></div>`
+    : `<div class="ph" onclick="photos.push(Math.floor(Math.random()*360));renderPhotos()">📷<span style="font-size:.65rem;position:absolute;bottom:8px">${i===0?"Cover":"+"}</span></div>`).join("");
+}
+function publish(){
+  const a = draft(); a.id = 900000 + (Date.now() % 99999); a.mine = true; a.example = true; a.phone = "250" + pphone.value.replace(/\D/g,"").replace(/^0/,"");
+  if (pneg.checked) a.details["Price"] = "Negotiable";
+  const L = myAds(); L.unshift(a); localStorage.setItem("fundi_my_ads", JSON.stringify(L.slice(0,20)));
+  viewmine.href = "ad.html?id=" + a.id; go(6);
+}
+document.querySelectorAll("#pcond input").forEach(r => r.addEventListener("change", () => document.querySelectorAll("#pcond .opt").forEach(o => o.classList.toggle("on", o.querySelector("input").checked))));
+const photos_el = document.getElementById("photos");
+window.onLang = () => {
+  pick.innerHTML = FUNDI.mcats.filter(c=>c.id!=="jobs").map(c=>`<button type="button" class="${c.id===PC?"on":""}" onclick="PC='${c.id}';onLang()"><span class="e">${c.icon}</span>${c[lang()]}</button>`).join("");
+  const c = mcat(PC), sv = psub.value;
+  psub.innerHTML = c ? c.subs.map(s=>`<option value="${s[0]}">${lang()==="rw"?s[2]:s[1]}</option>`).join("") : `<option value="">${t("choose")} ${t("p_cat").toLowerCase()} ↑</option>`;
+  if (sv && c && c.subs.some(s=>s[0]===sv)) psub.value = sv;
+  ploc.innerHTML = locOptions(ploc.value || "Remera").replace(/<option value="">[^<]*<\/option>/, "").replace(/<option value="kigali"[^<]*<\/option>/, "");
+  renderPhotos(); go(step);
+};
+</script></body></html>

@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Messages · Fundi.rw (demo)</title></head><body>
+<div class="wrap" style="max-width:640px" id="root"></div>
+<script>
+const AD = qs("ad");
+const save = th => localStorage.setItem("fundi_threads", JSON.stringify(th));
+const now = () => new Date().toTimeString().slice(0,5);
+const AUTO = ["Yes, it's still available (demo auto-reply).", "You can come and see it today after 2pm (example).", "Price is a little negotiable. Let's talk when we meet (example)."];
+function sendMsg(txt){
+  txt = (txt || msg.value).trim(); if (!txt) return;
+  const th = seedThreads(); const x = th.find(x => x.ad == AD); x.msgs.push({ me: true, txt, at: now() }); save(th); msg.value = ""; render();
+  setTimeout(() => { const th2 = seedThreads(); const y = th2.find(z => z.ad == AD); y.msgs.push({ me: false, txt: AUTO[(y.msgs.length) % AUTO.length], at: now() }); save(th2); render(); }, 1200);
+}
+function render(){
+  let th = seedThreads();
+  if (AD) {
+    const a = getAd(AD); if (!a) { location.href = "messages.html"; return; }
+    let x = th.find(x => x.ad == AD);
+    if (!x) { x = { ad: +AD, unread: 0, msgs: [] }; th.unshift(x); }
+    x.unread = 0; save(th);
+    const s = getSeller(a.seller) || { name: "You (demo)", initials: "ME", color: "#62706a" };
+    root.innerHTML = `<a class="card sellercard" style="margin-top:12px;padding:10px" href="ad.html?id=${a.id}"><div class="th-img" style="position:relative;width:52px;height:52px;border-radius:12px;overflow:hidden;flex:none">${adArt(a)}</div><div style="min-width:0"><b class="small">${adTitle(a)}</b><div class="price small">${priceTxt(a)}</div><div class="muted small">${s.name}</div></div></a>
+      <div class="chatbox">${x.msgs.length ? x.msgs.map(m=>`<div class="bubble ${m.me?"me":"them"}">${m.txt.replace(/</g,"&lt;")}<small>${m.at}</small></div>`).join("") : `<p class="muted small center">Say hello 👋. Messages in this demo stay on your phone.</p>`}</div>
+      <div class="composer"><div style="flex:1;display:flex;flex-direction:column;gap:6px">${x.msgs.length?"":`<div class="quickreplies">${["Is this still available?","What's the last price?","Where can I see it?"].map(q=>`<button class="chip" onclick="sendMsg('${q.replace(/'/g,"\\'")}')">${q}</button>`).join("")}</div>`}
+        <div style="display:flex;gap:8px"><input id="msg" data-i18n-ph="type_msg" placeholder="${t("type_msg")}" onkeydown="if(event.key==='Enter')sendMsg()"><button class="btn" onclick="sendMsg()">${t("send")}</button></div></div></div>`;
+    scrollTo(0, document.body.scrollHeight);
+  } else {
+    root.innerHTML = `<div class="page-head"><h1>💬 ${t("messages")}</h1><p class="muted small">${t("account_s")}</p></div>
+      <div class="card" style="padding:0;margin-top:12px">${th.map(x=>{ const a = getAd(x.ad); if (!a) return ""; const s = getSeller(a.seller) || {name:"You"}; const last = x.msgs[x.msgs.length-1] || {txt:"…",at:""};
+        return `<a class="thread" href="messages.html?ad=${a.id}"><div class="th-img">${adArt(a)}</div><div style="min-width:0;flex:1"><div style="display:flex;justify-content:space-between;gap:6px"><b class="small">${s.name}</b><span class="muted small">${last.at}</span></div><div class="small" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${adTitle(a)}</div><div class="muted small" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${last.me?"You: ":""}${last.txt}</div></div>${x.unread?`<span class="u">${x.unread}</span>`:""}</a>`; }).join("")}</div>
+      <p class="ex-note">*Example conversations. Nothing is sent to real sellers.</p>`;
+  }
+  const tb = document.querySelector(".tabbar"); if (tb) tb.outerHTML = tabbar();
+}
+if (AD) document.body.classList.add("no-footer");
+window.onLang = render;
+</script></body></html>

@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Seller · Fundi.rw (demo)</title></head><body>
+<div class="cover"></div><div class="wrap" id="root"></div>
+<script>
+const S = getSeller(qs("id")) || FUNDI.sellers[0];
+window.onLang = () => {
+  document.title = S.name + " · Fundi.rw (demo)";
+  const ads = allAds().filter(a => a.seller === S.id);
+  const fb = [["Grace M.","Fast reply, item exactly as in the photos."],["Yves G.","Met at the shop, tested everything first. Recommended."],["Josiane N.","Delivered the same day."]].slice(0, Math.min(3, S.feedback));
+  root.innerHTML = `<div class="profile-head">${avatar(S,"lg")}
+    <div><h1 style="font-size:1.5rem;margin:0">${S.name}</h1><div class="muted small">${S.type} · ${ICON.pin} ${locArea(S.loc)}</div>
+    ${S.rating?`<div class="rating"><span class="stars">${stars(S.rating)}</span> <b>${S.rating}</b> <span class="muted">(${S.feedback} ${t("feedback")})</span></div>`:""}</div>
+    <div class="tags">${S.verified?`<span class="badge ok">${ICON.shield} ${t("verified")} ID</span>`:'<span class="badge plain">ID not verified</span>'}<span class="badge plain">⏱ ${t("reply_time")} ${S.reply}</span><span class="badge plain">📅 ${t("member_since")} ${S.since}</span></div></div>
+  <div class="kpis"><div class="kpi"><b>${ads.length}</b><span class="muted small">${t("ads_word")}</span></div><div class="kpi"><b>${S.rating||"–"}★</b><span class="muted small">${S.feedback} ${t("feedback")}</span></div><div class="kpi"><b>${S.reply}</b><span class="muted small">${t("reply")}</span></div></div>
+  <div class="btn-row"><a class="btn wa" style="flex:1" target="_blank" rel="noopener" href="https://wa.me/${S.phone}">${ICON.wa} ${t("whatsapp")}</a><a class="btn dark" style="flex:1" href="tel:+${S.phone}">📞 ${t("call")}</a></div>
+  <section class="home-sec"><div class="sec-head"><h2>${t("seller_ads")}</h2></div><div class="adgrid">${ads.map(a=>adCard(a)).join("")}</div></section>
+  ${fb.length?`<div class="card" style="margin-top:14px"><h2>${t("feedback")}</h2>${fb.map(r=>`<div class="review"><b>${r[0]} (example)</b> <span class="stars small">★★★★★</span><p style="margin:4px 0 0">${r[1]}</p></div>`).join("")}</div>`:""}
+  <p class="ex-note">*This seller, their ads and feedback are fake examples.</p>`;
+};
+</script></body></html>

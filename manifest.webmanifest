@@ -1,7 +1,7 @@
 {
   "name": "Fundi.rw",
   "short_name": "Fundi",
-  "description": "Trusted local pros in Kigali (demo)",
+  "description": "Buy, sell & hire in Rwanda: classifieds, jobs and trusted pros (demo)",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",

@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Browse ads · Fundi.rw (demo)</title></head><body>
+<div class="wrap">
+  <div class="page-head"><h1 id="h"></h1><p class="muted small" id="crumb"></p></div>
+  <form class="msearch" style="margin-top:10px;box-shadow:none;border:1px solid var(--line)" onsubmit="event.preventDefault();render()">
+    <input id="q" type="search" data-i18n-ph="search_ph" placeholder="I'm looking for…" autocomplete="off">
+  </form>
+  <div class="chips subchips" id="subs" style="margin-top:10px"></div>
+  <div id="extra"></div>
+  <details class="card fwrap" id="fwrap"><summary>⚙️ <b data-i18n="filters_n">Filters &amp; sort</b> <span class="fn" id="fn"></span></summary>
+  <div class="fpanel">
+    <div class="full" style="text-align:right"><button type="button" class="chip" style="padding:3px 10px;font-size:.75rem" onclick="resetF()" data-i18n="reset">Reset</button></div>
+    <div><label data-i18n="location">Location</label><select id="floc"></select></div>
+    <div><label data-i18n="condition">Condition</label><select id="fcond"></select></div>
+    <div><label data-i18n="price_min">Min price</label><input id="fmin" type="number" inputmode="numeric" min="0" step="1000" placeholder="0"></div>
+    <div><label data-i18n="price_max">Max price</label><input id="fmax" type="number" inputmode="numeric" min="0" step="1000" placeholder="∞"></div>
+    <div><label data-i18n="sort">Sort by</label><select id="fsort"></select></div>
+    <label class="opt" style="margin:0;align-self:end"><input type="checkbox" id="fver"> 🪪 <span class="small" data-i18n="verified_only">Verified sellers only</span></label>
+  </div></details>
+  <p class="muted small"><b id="count"></b> <span data-i18n="found">ads found</span></p>
+  <div class="adgrid" id="list"></div>
+  <p class="ex-note">*Every ad here is a fake example. Contact buttons go to placeholder numbers.</p>
+</div>
+<script>
+let C = qs("c") || "", SUB = qs("sub") || "";
+function resetF(){ floc.value=""; fcond.value=""; fmin.value=""; fmax.value=""; fsort.value="new"; fver.checked=false; q.value=""; render(); }
+function setSub(s){ SUB = s; render(); }
+function render(){
+  const c = mcat(C);
+  h.textContent = c ? c.icon + " " + c[lang()] : (q.value ? `“${q.value}”` : t("all_cats"));
+  document.title = (c ? c.en : "Browse ads") + " · Fundi.rw (demo)";
+  crumb.innerHTML = `<a href="index.html">${t("home")}</a> › <a href="categories.html">${t("categories")}</a>${c?` › ${c[lang()]}`:""}${SUB?` › ${subName(C,SUB)}`:""}`;
+  subs.innerHTML = c ? [["", "✨ " + t("all")]].concat(c.subs.map(s=>[s[0], lang()==="rw"?s[2]:s[1]])).map(s=> C==="services"&&s[0]==="pros" ? `<a class="chip" href="services.html">🛠️ ${s[1]}</a>` : `<button class="chip ${s[0]===SUB?"on":""}" onclick="setSub('${s[0]}')">${s[1]}</button>`).join("")
+    : FUNDI.mcats.map(m=>`<a class="chip" href="${catHref(m)}">${m.icon} ${m[lang()]}</a>`).join("");
+  extra.innerHTML = C==="services" ? `<a class="banner" href="services.html"><span class="ico">🛠️</span><div><b>${t("book_pro")}</b><span class="muted small">${FUNDI.providers.length} ${t("pros_word")} · ${t("verified")}</span></div><span class="go">›</span></a>`
+    : C==="cvs" ? `<a class="banner" href="jobs.html"><span class="ico">💼</span><div><b>${t("jobs_banner")}</b><span class="muted small">${FUNDI.jobs.length} ${t("jobs_found")}</span></div><span class="go">›</span></a>` : "";
+  const term = q.value.trim().toLowerCase(), mn = +fmin.value||0, mx = +fmax.value||Infinity;
+  let L = allAds().filter(a => (!C||a.cat===C) && (!SUB||a.sub===SUB) && locMatch(a, floc.value) && (!fcond.value||a.cond===fcond.value) && a.price>=mn && a.price<=mx && (!fver.checked||(getSeller(a.seller)||{}).verified)
+    && (!term || (a.title+" "+(a.titleRw||"")+" "+a.desc+" "+mcatName(a.cat)+" "+a.loc).toLowerCase().includes(term)));
+  const S = { new:(a,b)=>(b.top-a.top)||a.mins-b.mins, low:(a,b)=>a.price-b.price, high:(a,b)=>b.price-a.price };
+  L.sort(S[fsort.value]||S.new);
+  count.textContent = L.length;
+  const nAct = [floc.value, fcond.value, fmin.value, fmax.value, fver.checked, fsort.value!=="new"].filter(Boolean).length;
+  fn.textContent = nAct ? nAct : ""; fn.style.display = nAct ? "" : "none";
+  list.innerHTML = L.length ? L.map(a=>adCard(a)).join("") : `<div class="card empty" style="grid-column:1/-1">😕 ${t("no_ads")}</div>`;
+}
+window.init = () => { if (matchMedia("(min-width:900px)").matches) fwrap.open = true; q.value = qs("q") || ""; ["floc","fcond","fmin","fmax","fsort","fver"].forEach(id=>document.getElementById(id).addEventListener("input",render)); q.addEventListener("input",()=>{clearTimeout(window._qt);window._qt=setTimeout(render,200)}); };
+window.onLang = () => {
+  const lv = floc.value || qs("loc") || "", cv = fcond.value, sv = fsort.value || qs("sort") || "new";
+  floc.innerHTML = locOptions(lv);
+  fcond.innerHTML = `<option value="">${t("any")}</option><option value="new">${t("cond_new")}</option><option value="used">${t("cond_used")}</option>`; fcond.value = cv;
+  fsort.innerHTML = `<option value="new">${t("sort_new")}</option><option value="low">${t("sort_low")}</option><option value="high">${t("sort_high")}</option>`; fsort.value = sv;
+  render();
+};
+window.onFav = () => {};
+</script></body></html>

@@ -1,20 +1,20 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Fundi.rw · Trusted local pros in Kigali (demo)</title></head><body>
-<section class="hero landing"><div class="wrap">
-  <span class="badge" style="background:rgba(255,255,255,.18);color:#fff">📍 Kigali</span>
-  <h1 style="margin-top:10px" data-i18n="hero_title">Trusted local pros in Kigali</h1>
-  <p data-i18n="hero_sub"></p>
-  <form class="searchbox" action="search.html">
-    <div><label data-i18n="what">What do you need?</label><select name="cat" id="hcat"></select></div>
-    <div><label data-i18n="where">Which sector?</label><select name="sector" id="hsec"></select></div>
-    <div style="display:flex;align-items:end"><button class="btn yellow block" type="submit">🔍 <span data-i18n="search">Search</span></button></div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F7A3D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Fundi.rw"><meta name="application-name" content="Fundi.rw"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Fundi.rw · Buy, sell &amp; hire in Rwanda (demo)</title></head><body>
+<section class="m-hero"><div class="wrap">
+  <h1 data-i18n="m_hero">Buy, sell &amp; hire anything in Rwanda</h1>
+  <p data-i18n="m_hero_s"></p>
+  <form class="msearch" action="category.html">
+    <input name="q" type="search" data-i18n-ph="search_ph" placeholder="I'm looking for…" autocomplete="off">
+    <div class="row"><select name="loc" id="hloc" aria-label="Location"></select><button class="btn yellow" type="submit" aria-label="Search">🔍</button></div>
   </form>
-  <div class="quick"><div class="quick-h"><span data-i18n="quick">Popular now</span><a href="services.html"><span data-i18n="see_all">See all</span> →</a></div><div class="qbtns" id="qbtns"></div></div>
 </div></section>
 <div class="wrap">
+  <section class="home-sec"><div class="sec-head"><h2 data-i18n="categories">Categories</h2><a href="categories.html"><span data-i18n="see_all">See all</span> →</a></div>
+    <div class="catgrid" id="cats"></div></section>
+
   <div class="carousel" aria-roledescription="carousel"><div class="slides" id="slides"></div><div class="dots" id="dots"></div></div>
 
-  <section class="home-sec"><div class="stats" id="stats"></div>
-    <div class="sec-head" style="margin:14px 0 0"><h2 data-i18n="trending_t">Trending this week</h2></div><div class="trend" id="trend"></div></section>
+  <section class="home-sec"><div class="sec-head"><h2>🔥 <span data-i18n="trending_ads">Trending ads</span></h2><a href="category.html?sort=new"><span data-i18n="see_all">See all</span> →</a></div>
+    <div class="hscroll ads" id="trending"></div></section>
 
   <section class="home-sec"><div class="sec-head"><h2>💼 <span data-i18n="jobs_t">Jobs &amp; gigs</span></h2><a href="jobs.html"><span data-i18n="see_all">See all</span> →</a></div>
     <div class="hscroll" id="jobs"></div></section>
@@ -22,26 +22,28 @@
   <section class="home-sec"><div class="sec-head"><h2>🏷️ <span data-i18n="deals_t">Deals near you</span></h2><a href="providers.html"><span data-i18n="see_all">See all</span> →</a></div>
     <div class="grid g2m" id="deals"></div></section>
 
-  <a class="card how-strip" href="how.html"><div class="ico">🪪</div><div><b data-i18n="how_link">How Fundi works</b><div class="muted small" data-i18n="how_s"></div></div><span style="margin-left:auto;color:var(--mut);font-size:1.4rem">›</span></a>
-  <p class="ex-note">*All ads, jobs, deals and figures on this page are fake examples for the demo.</p>
+  <section class="home-sec"><div class="sec-head"><h2>🆕 <span data-i18n="recent">Recently posted</span></h2><a href="category.html?sort=new"><span data-i18n="see_all">See all</span> →</a></div>
+    <div class="adgrid" id="recent"></div></section>
+
+  <a class="card how-strip" href="post.html"><div class="ico">📣</div><div><b data-i18n="post_t">Post a free ad</b><div class="muted small" data-i18n="m_hero_s"></div></div><span style="margin-left:auto;color:var(--mut);font-size:1.4rem">›</span></a>
+  <p class="ex-note">*All ads, sellers, jobs, deals and prices on this page are fake examples for the demo.</p>
 </div>
 <script>
 let slideIx = 0, slideTimer;
 function goSlide(i){ const n = FUNDI.promos.length; slideIx = (i + n) % n; slides.scrollTo({ left: slides.children[slideIx].offsetLeft - slides.offsetLeft, behavior: "smooth" }); markDots(); }
 function markDots(){ [...dots.children].forEach((d,k)=>d.classList.toggle("on", k===slideIx)); }
-function autoplay(){ clearInterval(slideTimer); slideTimer = setInterval(()=>goSlide(slideIx+1), 4000); }
+function autoplay(){ clearInterval(slideTimer); slideTimer = setInterval(()=>goSlide(slideIx+1), 4500); }
 window.onLang = () => {
-  hcat.innerHTML = FUNDI.categories.filter(c=>!c.soon).map(c=>`<option value="${c.id}">${c.icon} ${c[lang()]}</option>`).join("");
-  hsec.innerHTML = `<option value="">${t("any")}</option>` + FUNDI.sectors.map(s=>`<option>${s}</option>`).join("");
-  qbtns.innerHTML = FUNDI.categories.filter(c=>!c.soon).map(c=>`<a class="qbtn" href="search.html?cat=${c.id}"><span class="e">${c.icon}</span>${c[lang()]}</a>`).join("") + `<a class="qbtn" href="services.html"><span class="e">➕</span>${t("all_services")}</a>`;
+  hloc.innerHTML = locOptions(hloc.value || "");
+  cats.innerHTML = FUNDI.mcats.map(c=>`<a class="ci" href="${catHref(c)}"><span class="ic" style="background:${c.bg}">${c.icon}</span>${c[lang()]}<small>${catCount(c.id)}</small></a>`).join("");
   slides.innerHTML = FUNDI.promos.map(p=>`<a class="slide" href="${p.href}" style="background:${p.bg}"><span class="em">${p.emoji}</span><span class="tg">${L2(p,"tag")}</span><div><h3>${L2(p,"title")}</h3><p>${L2(p,"sub")}</p></div><span class="go">${L2(p,"cta")} →</span></a>`).join("");
   dots.innerHTML = FUNDI.promos.map((_,k)=>`<button aria-label="Slide ${k+1}" onclick="goSlide(${k});autoplay()"></button>`).join("");
   markDots();
-  stats.innerHTML = `<div><b>120+</b>${t("stats_pros")}*</div><div><b>4.8★</b>${t("stats_rating")}*</div><div><b>~20m</b>${t("stats_reply")}*</div><div><b>${FUNDI.jobs.length}</b>${t("stats_jobs")}*</div>`;
-  trend.innerHTML = FUNDI.trending.map(x=>`<span>${x.icon} ${x[lang()]}<i>${x.v}</i></span>`).join("");
+  trending.innerHTML = FUNDI.ads.filter(a=>a.top).concat(FUNDI.ads.filter(a=>!a.top&&a.mins<200)).slice(0,8).map(a=>adCard(a)).join("");
   jobs.innerHTML = FUNDI.jobs.slice(0,5).map(jobCard).join("");
   deals.innerHTML = FUNDI.deals.map(d=>{ const p = getProvider(d.provider); const off = Math.round((1-d.now/d.was)*100);
     return `<a class="card deal" href="provider.html?id=${p.id}">${avatar(p)}<div style="min-width:0"><b>${L2(d,"text")}</b><span class="muted small">${p.name}</span><div><span class="price">${rwf(d.now)}</span><span class="was">${rwf(d.was)}</span> <span class="muted small">· ${t("ends")} ${d.ends}</span></div></div><span class="off">-${off}%</span></a>`; }).join("");
+  recent.innerHTML = [...allAds()].sort((a,b)=>a.mins-b.mins).slice(0,12).map(a=>adCard(a)).join("");
 };
 window.init = () => {
   let st; slides.addEventListener("scroll", () => { clearTimeout(st); st = setTimeout(() => { const w = slides.children[0] ? slides.children[0].offsetWidth + 10 : 1; slideIx = Math.round(slides.scrollLeft / w); markDots(); }, 80); }, { passive: true });

@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLang();
 });
 /* PWA: offline service worker (relative path so it works under /fundi-rw-demo/) */
-if ("serviceWorker" in navigator && location.protocol !== "file:") {
+const inNativeApp = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && !inNativeApp) {
   window.addEventListener("load", () => { navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(() => {}); });
 }
 /* iPhone install hint: only iOS Safari, not already installed, dismissible */
@@ -76,7 +77,7 @@ function maybeIosHint() {
   const isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   const isSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram/.test(ua);
   const standalone = navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
-  if (!isIOS || !isSafari || standalone || localStorage.getItem("fundi_ios_hint") === "x") return;
+  if (inNativeApp || !isIOS || !isSafari || standalone || localStorage.getItem("fundi_ios_hint") === "x") return;
   const el = document.createElement("div");
   el.className = "ios-hint";
   el.setAttribute("role", "note");

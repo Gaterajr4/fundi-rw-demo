@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1f7a4a"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Pro dashboard · Fundi.rw (demo)</title></head><body>
+<div class="wrap" style="padding-top:20px">
+ <div style="display:flex;gap:12px;align-items:center;margin-bottom:16px" id="me"></div>
+ <div class="grid g2 g4">
+  <div class="card stat"><span class="muted small">New requests</span><b>3</b><span class="up">+2 today</span></div>
+  <div class="card stat"><span class="muted small">This month earnings</span><b>412,000 RWF</b><span class="up">+18% vs Sep</span></div>
+  <div class="card stat"><span class="muted small">Rating</span><b>4.9 ★</b><span class="up">38 reviews</span></div>
+  <div class="card stat"><span class="muted small">WhatsApp contacts</span><b>57</b><span class="up">this month</span></div>
+ </div>
+ <div class="grid g2m" style="margin-top:14px">
+  <div class="card"><h2>Bookings</h2><div style="overflow-x:auto"><table><thead><tr><th>Customer</th><th>Job</th><th>When</th><th>Deposit</th><th></th></tr></thead><tbody id="bk"></tbody></table></div></div>
+  <div class="grid" style="align-content:start">
+   <div class="card"><h2>Earnings (RWF, k)</h2><div class="bars" id="bars"></div><div style="height:22px"></div><p class="muted small">Paid out directly to your MoMo (MTN ••• 0001). Fee: 3% on deposits.</p></div>
+   <div class="card"><h2>Latest reviews</h2><div id="rv"></div></div>
+   <div class="card" style="background:var(--yl)"><b>⭐ Verified Pro: free until 9 Jan 2027</b><p class="muted small" style="margin:4px 0 0">Higher placement, verified badge, 10 photos.</p></div>
+  </div>
+ </div>
+ <p class="muted small">All figures are fake demo data.</p>
+</div>
+<script>
+const p = FUNDI.providers[0];
+const B = [["Aline K.","Leak / tap repair","Today 14:00",2000,"new"],["Eric N.","Geyser install","Today 16:00",8000,"conf"],["Moses R.","Toilet repair","Tomorrow 08:00",3000,"new"],["Divine U.","Water tank cleaning","Sat 10:00",5000,"conf"],["Patrick H.","Leak / tap repair","Mon 7 Oct",2000,"done"]];
+function accept(b){b.outerHTML='<span class="st conf">Accepted</span>'}
+function replied(a){a.outerHTML='<span class="muted small">Reply posted (demo)</span>'}
+window.onLang = () => {
+  me.innerHTML = avatar(p) + `<div><div class="muted small">Muraho 👋</div><h1 style="font-size:1.4rem;margin:0">${p.name}</h1><span class="badge ok">${ICON.shield} ${t("verified")}</span></div>`;
+  bk.innerHTML = B.map(b=>`<tr><td><b>${b[0]}</b></td><td>${b[1]}</td><td class="small">${b[2]}</td><td class="small">${rwf(b[3])}</td><td>${b[4]==="new"?'<button class="btn sm" onclick="accept(this)">Accept</button>':b[4]==="conf"?'<span class="st conf">Confirmed</span>':'<span class="st done">Done</span>'}</td></tr>`).join("");
+  bars.innerHTML = [["May",180],["Jun",240],["Jul",210],["Aug",300],["Sep",350],["Oct",412]].map(([m,v])=>`<div style="height:${v/412*100}%" title="${v}k"><span>${m}</span></div>`).join("");
+  rv.innerHTML = p.reviewList.slice(0,2).map(r=>`<div class="review"><b>${r.who}</b> <span class="stars small">${stars(r.stars)}</span><p style="margin:4px 0" class="small">${r.text}</p><a class="small" href="#" onclick="replied(this);return false">Reply publicly</a></div>`).join("");
+};
+</script></body></html>

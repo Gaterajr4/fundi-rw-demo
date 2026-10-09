@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1f7a4a"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Provider · Fundi.rw (demo)</title></head><body>
+<div class="cover"></div><div class="wrap" id="root"></div>
+<div class="sticky-cta" id="cta"></div>
+<script>
+const p = getProvider(qs("id")) || FUNDI.providers[0];
+window.onLang = () => {
+  document.title = p.name + " · Fundi.rw (demo)";
+  root.innerHTML = `<div class="profile-head">${avatar(p,"lg")}
+    <div><h1 style="font-size:1.6rem;margin:0">${p.name}</h1>
+    <div class="muted">${catIcon(p.category)} ${catName(p.category)} · ${ICON.pin} ${p.sectors.join(", ")}</div>
+    <div class="rating"><span class="stars">${stars(p.rating)}</span> <b>${p.rating}</b> <span class="muted">(${p.reviews})</span></div></div>
+    <div class="tags">${p.verified?`<span class="badge ok">${ICON.shield} ${t("verified")} ID + MoMo</span>`:'<span class="badge plain">ID check pending</span>'}${p.rdb?'<span class="badge">RDB registered</span>':""}<span class="badge plain">⏱ ${t("reply")} ${p.response}</span></div></div>
+  <div class="kpis"><div class="kpi"><b>${p.jobs}</b><span class="muted small">${t("jobs")}</span></div><div class="kpi"><b>${p.years}</b><span class="muted small">${t("years")}</span></div><div class="kpi"><b>${p.rating}★</b><span class="muted small">${p.reviews} rev.</span></div></div>
+  <div class="grid g2m">
+   <div class="grid" style="align-content:start">
+    <div class="card"><h2 data-i18n="about">${t("about")}</h2><p style="margin:0">${p.bio}</p><p class="muted small" style="margin:8px 0 0">🕒 ${p.hours}</p></div>
+    <div class="card"><h2>${t("services")}</h2>${p.services.map((s,i)=>`<div class="svc"><div><b>${s.n}</b><div class="muted small">${t("from")} ${rwf(s.p)}</div></div><a class="btn sm ghost" href="book.html?id=${p.id}&s=${i}">${t("book")}</a></div>`).join("")}</div>
+    <div class="card"><h2>${t("gallery")}</h2><div class="gallery">${["📷","🛠️","📷","✨","📷","🏠"].map(e=>`<div>${e}</div>`).join("")}</div><p class="muted small">Photo placeholders for the demo</p></div>
+   </div>
+   <div class="card" style="align-self:start"><h2>${t("reviews")}</h2>${p.reviewList.map(r=>`<div class="review"><div style="display:flex;gap:10px;align-items:center">${avatar({color:"#9aa59f",initials:r.who.split(" ").map(x=>x[0]).join("")},"sm")}<div><b>${r.who}</b> <span class="stars small">${stars(r.stars)}</span><div class="muted small">${r.date}</div></div></div><p style="margin:8px 0 6px">${r.text}</p><span class="jobtag">✔ Verified job: ${r.job}</span></div>`).join("")}</div>
+  </div><div style="height:20px"></div>`;
+  cta.innerHTML = `<a class="btn wa" target="_blank" rel="noopener" href="${waLink(p)}">${ICON.wa} ${t("whatsapp")}</a><a class="btn" href="book.html?id=${p.id}">📅 ${t("book")}</a>`;
+};
+</script></body></html>

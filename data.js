@@ -1,0 +1,46 @@
+/* Fundi.rw DEMO DATA. All names, numbers and reviews are FAKE examples. */
+window.FUNDI = {
+  categories: [
+    { id: "plumber", icon: "🔧", en: "Plumbers", rw: "Abafundi b'amazi" },
+    { id: "electrician", icon: "⚡", en: "Electricians", rw: "Abafundi b'amashanyarazi" },
+    { id: "salon", icon: "💇🏾", en: "Salons & Barbers", rw: "Salon n'Abogoshi" },
+    { id: "cleaner", icon: "🧽", en: "Cleaners", rw: "Abakora isuku", soon: true },
+    { id: "tutor", icon: "📚", en: "Tutors", rw: "Abarimu bigisha", soon: true },
+    { id: "mover", icon: "🚚", en: "Movers", rw: "Abimura ibintu", soon: true }
+  ],
+  sectors: ["Kimihurura", "Remera", "Kicukiro", "Kimironko", "Nyarutarama", "Kacyiru", "Gikondo", "Niboye"],
+  providers: [
+    { id: 1, name: "Jean-Claude M. (Example)", initials: "JM", color: "#2f7d4f", category: "plumber", sectors: ["Kimihurura", "Kacyiru", "Remera"], rating: 4.9, reviews: 38, jobs: 112, years: 8, from: 8000, verified: true, rdb: true, response: "~15 min", hours: "Mon–Sat 7:00–19:00", phone: "250780000001",
+      bio: "Leak repairs, water tanks, geysers and bathroom fittings. I bring my own tools and spare parts.",
+      services: [{ n: "Leak / tap repair", p: 8000 }, { n: "Toilet repair or install", p: 15000 }, { n: "Water tank cleaning & connection", p: 25000 }, { n: "Geyser install", p: 40000 }],
+      reviewList: [{ who: "Aline K.", job: "Leak / tap repair", date: "2 Oct 2026", stars: 5, text: "Came within an hour in the rain and fixed the kitchen leak. Clear price before starting." }, { who: "Eric N.", job: "Geyser install", date: "21 Sep 2026", stars: 5, text: "Neat work, cleaned up after. Paid the deposit with MoMo, rest after the job." }, { who: "Divine U.", job: "Toilet repair", date: "4 Sep 2026", stars: 4, text: "Good job, arrived 20 minutes late but called ahead." }] },
+    { id: 2, name: "Claudine U. (Example)", initials: "CU", color: "#c58b00", category: "electrician", sectors: ["Remera", "Kimironko", "Nyarutarama"], rating: 4.8, reviews: 27, jobs: 74, years: 6, from: 10000, verified: true, rdb: false, response: "~30 min", hours: "Mon–Sun 8:00–20:00", phone: "250780000002",
+      bio: "Wiring, sockets, breakers, solar back-up and inverter installs for homes and small shops.",
+      services: [{ n: "Socket / switch repair", p: 10000 }, { n: "Breaker / DB board fix", p: 20000 }, { n: "House rewiring (per room)", p: 45000 }, { n: "Inverter & battery install", p: 60000 }],
+      reviewList: [{ who: "Patrick H.", job: "Breaker fix", date: "29 Sep 2026", stars: 5, text: "Found the fault fast. Explained everything in Kinyarwanda and English." }, { who: "Grace M.", job: "Inverter install", date: "12 Sep 2026", stars: 5, text: "Power cuts are no longer a problem. Very professional." }] },
+    { id: 3, name: "Salon Keza (Example)", initials: "SK", color: "#b5476b", category: "salon", sectors: ["Kicukiro", "Niboye", "Gikondo"], rating: 4.7, reviews: 64, jobs: 230, years: 5, from: 3000, verified: true, rdb: true, response: "~10 min", hours: "Mon–Sun 8:00–21:00", phone: "250780000003",
+      bio: "Braids, natural hair, nails and men's cuts. Home visits available for weddings.",
+      services: [{ n: "Men's haircut", p: 3000 }, { n: "Wash & blow-dry", p: 6000 }, { n: "Box braids", p: 25000 }, { n: "Bridal home visit", p: 80000 }],
+      reviewList: [{ who: "Sandrine I.", job: "Box braids", date: "5 Oct 2026", stars: 5, text: "Beautiful braids, finished on time. Booking ahead meant no waiting." }, { who: "Kevin T.", job: "Men's haircut", date: "1 Oct 2026", stars: 4, text: "Clean fade, fair price." }] },
+    { id: 4, name: "Emmanuel N. (Example)", initials: "EN", color: "#3b6fb6", category: "plumber", sectors: ["Kicukiro", "Gikondo", "Niboye"], rating: 4.6, reviews: 19, jobs: 51, years: 4, from: 7000, verified: true, rdb: false, response: "~45 min", hours: "Mon–Sat 7:30–18:00", phone: "250780000004",
+      bio: "Blocked drains, pipe replacement and new bathroom plumbing.",
+      services: [{ n: "Blocked drain", p: 7000 }, { n: "Pipe replacement (per metre)", p: 5000 }, { n: "New bathroom plumbing", p: 120000 }],
+      reviewList: [{ who: "Olivier B.", job: "Blocked drain", date: "27 Sep 2026", stars: 5, text: "Fixed it the same day." }, { who: "Chantal M.", job: "Pipe replacement", date: "10 Sep 2026", stars: 4, text: "Good price, honest about what was needed." }] },
+    { id: 5, name: "Theoneste K. (Example)", initials: "TK", color: "#7a4fb5", category: "electrician", sectors: ["Kimihurura", "Kacyiru", "Kicukiro"], rating: 4.5, reviews: 15, jobs: 40, years: 10, from: 12000, verified: false, rdb: false, response: "~1 hr", hours: "Mon–Fri 8:00–17:00", phone: "250780000005",
+      bio: "Commercial electrical work, CCTV and security lighting.",
+      services: [{ n: "Security light install", p: 12000 }, { n: "CCTV setup (4 cameras)", p: 90000 }, { n: "Office wiring check", p: 30000 }],
+      reviewList: [{ who: "Jacques R.", job: "CCTV setup", date: "18 Sep 2026", stars: 5, text: "Cameras work well, set them up on my phone too." }] },
+    { id: 6, name: "Urban Fade Barbers (Example)", initials: "UF", color: "#1f6f6f", category: "salon", sectors: ["Remera", "Kimironko"], rating: 4.8, reviews: 52, jobs: 190, years: 3, from: 2500, verified: true, rdb: true, response: "~5 min", hours: "Mon–Sun 7:00–22:00", phone: "250780000006",
+      bio: "Barbershop near Remera stadium (example). Fades, beard trims and kids' cuts.",
+      services: [{ n: "Kids' cut", p: 2500 }, { n: "Fade + beard", p: 5000 }, { n: "Hot towel shave", p: 4000 }],
+      reviewList: [{ who: "Yves G.", job: "Fade + beard", date: "6 Oct 2026", stars: 5, text: "Best fade in Remera. Booked at lunchtime, no queue." }] },
+    { id: 7, name: "Aimable H. (Example)", initials: "AH", color: "#a0522d", category: "plumber", sectors: ["Remera", "Kimironko", "Nyarutarama"], rating: 4.3, reviews: 9, jobs: 22, years: 2, from: 6000, verified: true, rdb: false, response: "~20 min", hours: "Mon–Sun 6:30–20:00", phone: "250780000007",
+      bio: "TVET-trained plumber (example). Quick fixes and water pump installs.",
+      services: [{ n: "Tap / shower fix", p: 6000 }, { n: "Water pump install", p: 35000 }],
+      reviewList: [{ who: "Josiane N.", job: "Water pump install", date: "15 Sep 2026", stars: 4, text: "Pump works great. Young but careful." }] },
+    { id: 8, name: "Volt Pro Rwanda (Example)", initials: "VP", color: "#2e7d32", category: "electrician", sectors: ["Gikondo", "Niboye", "Kicukiro"], rating: 4.9, reviews: 33, jobs: 98, years: 7, from: 9000, verified: true, rdb: true, response: "~25 min", hours: "Mon–Sat 7:00–19:00", phone: "250780000008",
+      bio: "Two-person team. Meter issues, cash-power, wiring and solar.",
+      services: [{ n: "Cash-power meter issue", p: 9000 }, { n: "Solar panel install (small)", p: 150000 }, { n: "Fault finding", p: 15000 }],
+      reviewList: [{ who: "Benjamin S.", job: "Fault finding", date: "3 Oct 2026", stars: 5, text: "Very fast, fair price, gave a receipt." }] }
+  ]
+};

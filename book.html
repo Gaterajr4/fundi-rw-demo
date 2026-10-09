@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1f7a4a"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Book · Fundi.rw (demo)</title></head><body>
+<div class="wrap" style="max-width:560px;padding-top:18px">
+  <a href="#" onclick="history.back();return false" class="small">← <span data-i18n="back">Back</span></a>
+  <div class="card" style="margin-top:10px;display:flex;gap:12px;align-items:center" id="who"></div>
+  <div class="steps-bar" id="bar"><span></span><span></span><span></span><span></span></div>
+
+  <div class="step-pane" data-step="1"><h2>1. Choose a service</h2><div id="svcs"></div><button class="btn block" onclick="go(2)" data-i18n="next">Continue</button></div>
+
+  <div class="step-pane hidden" data-step="2"><h2>2. Date &amp; time</h2>
+    <div class="field"><label>Date</label><input type="date" id="date"></div>
+    <label>Time</label><div class="slots" id="slots"></div>
+    <div style="height:14px"></div><button class="btn block" onclick="go(3)" data-i18n="next">Continue</button></div>
+
+  <div class="step-pane hidden" data-step="3"><h2>3. Address</h2>
+    <div class="field"><label>Sector</label><select id="asec"></select></div>
+    <div class="field"><label>Street / landmark</label><input id="addr" placeholder="e.g. KG 7 Ave, blue gate near the church"></div>
+    <div class="field"><label>Your phone</label><input id="cphone" inputmode="tel" placeholder="07X XXX XXXX"></div>
+    <div class="field"><label>Describe the problem (optional)</label><textarea id="note" rows="3" placeholder="e.g. kitchen tap leaking since morning"></textarea></div>
+    <button class="btn block" onclick="go(4)" data-i18n="next">Continue</button></div>
+
+  <div class="step-pane hidden" data-step="4"><h2>4. Pay deposit with Mobile Money</h2>
+    <div class="notice">🧪 Demo checkout. No real payment is made and no money leaves your phone.</div>
+    <div class="momo" id="momo">
+      <label class="opt on"><input type="radio" name="net" value="MTN MoMo" checked><span class="mtn">MTN</span>MTN MoMo</label>
+      <label class="opt"><input type="radio" name="net" value="Airtel Money"><span class="airtel">airtel</span>Airtel Money</label>
+    </div>
+    <div class="field"><label>MoMo number</label><input id="mphone" inputmode="tel" value="078 000 0000"></div>
+    <div class="summary" id="sum"></div>
+    <div style="height:14px"></div><button class="btn block yellow" onclick="pay()">🔒 <span data-i18n="pay">Pay deposit</span> <span id="payamt"></span></button>
+    <p class="muted small center">Paid via a licensed aggregator in production (e.g. Paypack / Flutterwave). Fundi never holds your money.</p></div>
+
+  <div class="step-pane hidden center" data-step="5"><h2>Approve on your phone</h2>
+    <div class="phone-anim">📲</div>
+    <p>We sent a payment request to <b id="wphone"></b>.<br>Dial your PIN to approve <b id="wamt"></b>.</p>
+    <div class="spinner"></div><p class="muted small">Waiting for approval… (simulated)</p></div>
+
+  <div class="step-pane hidden center" data-step="6"><div class="check">✓</div><h2>Booking confirmed!</h2>
+    <p class="muted">Deposit received (simulated). The pro has been notified and will call you to confirm.</p>
+    <div class="summary" style="text-align:left" id="final"></div>
+    <div style="height:14px"></div><div class="btn-row" style="justify-content:center"><a class="btn wa" id="fwa" target="_blank" rel="noopener">WhatsApp the pro</a><a class="btn ghost" href="index.html" data-i18n="home">Home</a></div>
+    <p class="muted small">After the job you'll get an SMS to leave a verified review.</p></div>
+</div>
+<script>
+const p = getProvider(qs("id")) || FUNDI.providers[0];
+let S = { svc: +(qs("s")||0), time: "10:00" };
+const dep = () => Math.max(2000, Math.round(p.services[S.svc].p*0.2/500)*500);
+const net = () => document.querySelector("input[name=net]:checked").value;
+window.init = () => {
+  const d = new Date(); d.setDate(d.getDate()+1); date.value = d.toISOString().slice(0,10); date.min = new Date().toISOString().slice(0,10);
+  asec.innerHTML = p.sectors.map(s=>`<option>${s}</option>`).join("");
+  slots.innerHTML = ["08:00","10:00","12:00","14:00","16:00","18:00"].map(x=>`<button class="slot ${x===S.time?"on":""}" onclick="S.time='${x}';document.querySelectorAll('.slot').forEach(b=>b.classList.toggle('on',b.textContent===S.time))">${x}</button>`).join("");
+  document.querySelectorAll("#momo input").forEach(r=>r.onchange=()=>document.querySelectorAll("#momo .opt").forEach(o=>o.classList.toggle("on",o.querySelector("input").checked)));
+  if (qs("auto")==="success") { addr.value="KG 7 Ave, blue gate"; cphone.value="078 000 0000"; go(6); }
+};
+function renderSvcs(){ svcs.innerHTML = p.services.map((s,i)=>`<label class="opt ${i===S.svc?"on":""}"><input type="radio" name="svc" ${i===S.svc?"checked":""} onchange="S.svc=${i};renderSvcs()"><div style="flex:1"><b>${s.n}</b></div><b class="price">${rwf(s.p)}</b></label>`).join(""); }
+function summary(){ const s=p.services[S.svc]; return `<div class="row"><span>${s.n}</span><span>${rwf(s.p)}</span></div><div class="row muted small"><span>${date.value} · ${S.time} · ${asec.value}</span></div><div class="row"><span>Pay later to pro (cash/MoMo)</span><span>${rwf(s.p-dep())}</span></div><div class="row total"><span>Deposit now</span><span>${rwf(dep())}</span></div>`; }
+function go(n){
+  if (n===4 && !addr.value.trim()) { addr.focus(); addr.style.borderColor="#d33"; return; }
+  document.querySelectorAll(".step-pane").forEach(el=>el.classList.toggle("hidden", +el.dataset.step!==n));
+  document.querySelectorAll("#bar span").forEach((b,i)=>b.classList.toggle("on", i<Math.min(n,4)));
+  if (n>=4){ sum.innerHTML=summary(); payamt.textContent="· "+rwf(dep()); }
+  if (n===6){ final.innerHTML = `<div class="row"><span>Booking ref</span><b>FND-${Math.floor(100000+Math.random()*900000)}</b></div><div class="row"><span>Pro</span><span>${p.name}</span></div>` + summary().replace("Deposit now","Deposit paid (" + net() + ")"); fwa.href = waLink(p); }
+  scrollTo(0,0);
+}
+function pay(){ if(!mphone.value.trim()) return mphone.focus(); wphone.textContent=mphone.value+" ("+net()+")"; wamt.textContent=rwf(dep()); go(5); setTimeout(()=>go(6),3500); }
+window.onLang = () => { who.innerHTML = avatar(p)+`<div><b>${p.name}</b><div class="muted small">${catIcon(p.category)} ${catName(p.category)} · ★ ${p.rating}</div></div>`; renderSvcs(); };
+</script></body></html>

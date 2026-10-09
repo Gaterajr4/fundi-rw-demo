@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1f7a4a"><link rel="stylesheet" href="style.css"><script src="data.js"></script><script src="app.js"></script><title>Find a pro · Fundi.rw (demo)</title></head><body>
+<div class="wrap" style="padding-top:20px">
+  <h1 style="font-size:1.6rem" data-i18n="nav_find">Find a pro</h1>
+  <div class="chips" id="chips"></div>
+  <div class="search-layout">
+    <aside class="card filters">
+      <div style="grid-column:1/-1"><b data-i18n="filters">Filters</b></div>
+      <div><label data-i18n="where">Sector</label><select id="fsec"></select></div>
+      <div><label data-i18n="minrating">Min rating</label><select id="frat"><option value="0">–</option><option value="4">4.0+</option><option value="4.5">4.5+</option><option value="4.8">4.8+</option></select></div>
+      <div style="grid-column:1/-1"><label><span data-i18n="maxprice">Max starting price</span>: <span id="fpv"></span></label><input type="range" id="fprice" min="2000" max="15000" step="500" value="15000"></div>
+      <label class="opt" style="grid-column:1/-1;margin:0"><input type="checkbox" id="fver"> 🪪 <span data-i18n="verified">Verified</span></label>
+    </aside>
+    <div><p class="muted small"><b id="count"></b> <span data-i18n="results">pros found</span></p><div class="grid g2m" id="list"></div></div>
+  </div>
+</div>
+<script>
+let cat = qs("cat") || "";
+window.init = () => { fsec.value = qs("sector") || ""; ["fsec","frat","fprice","fver"].forEach(id=>document.getElementById(id).addEventListener("input",render)); };
+function render(){
+  fpv.textContent = rwf(+fprice.value);
+  const L = FUNDI.providers.filter(p => (!cat||p.category===cat) && (!fsec.value||p.sectors.includes(fsec.value)) && p.rating>=+frat.value && p.from<=+fprice.value && (!fver.checked||p.verified)).sort((a,b)=>b.rating-a.rating);
+  count.textContent = L.length;
+  list.innerHTML = L.length ? L.map(providerCard).join("") : '<div class="card empty">😕 No pros match. Try another sector or raise the price.</div>';
+  chips.innerHTML = [{id:"",icon:"✨"}].concat(FUNDI.categories.filter(c=>!c.soon)).map(c=>`<button class="chip ${c.id===cat?"on":""}" onclick="cat='${c.id}';render()">${c.icon} ${c.id?c[lang()]:t("all")}</button>`).join("");
+}
+window.onLang = () => { const v = fsec.value || qs("sector") || ""; fsec.innerHTML = `<option value="">${t("any")}</option>`+FUNDI.sectors.map(s=>`<option>${s}</option>`).join(""); fsec.value=v; render(); };
+</script></body></html>
